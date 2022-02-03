@@ -12,7 +12,7 @@ module.exports = {
     name: "help",
     category: "Information",
     aliases: [ "h" ],
-    description: "Return all commands, or one specific command",
+    description: "Список всех комманд",
     args: false,
     usage: "",
     permission: [],
@@ -49,7 +49,7 @@ module.exports = {
 
                     obyy = {
                         name: `\`${e}\``,
-                        value: des || 'No description',
+                        value: des || 'Описания не существует',
                         inline: true
                     }
 
@@ -69,8 +69,8 @@ module.exports = {
             cots2.forEach(cot => {
 
                 const embed = new MessageEmbed()
-                    .setTitle(`${cot.dir.charAt(0).toUpperCase() + cot.dir.slice(1)} Commands!`)
-                    .setDescription(`Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`)
+                    .setTitle(`${cot.dir.charAt(0).toUpperCase() + cot.dir.slice(1)} Команда!`)
+                    .setDescription(`Используете \`${prefix}help\` и ведите название любой команды в боте.\nПример: \`${prefix}help ping\`.\n\n`)
                     .setColor(client.embedColor)
 
                 cot.cmdd.forEach(ecmdd => {
@@ -93,37 +93,37 @@ module.exports = {
 
             if (!command) {
                 const embed = new MessageEmbed()
-                    .setTitle(`Invalid command! Use \`${prefix}help\` for all of my commands!`)
+                    .setTitle(`Команда не существует! Используете \`${prefix}help\` для просмотра всех команд!`)
                     .setColor("RED");
                 return await client.sendEmbed(embed);
             }
 
             const embed = new MessageEmbed()
-                .setTitle("Command Details:")
+                .setTitle("Команда и её детали:")
                 .addField(
-                    "Command:",
-                    command.name ? `\`${command.name}\`` : "No name for this command."
+                    "Команда:",
+                    command.name ? `\`${command.name}\`` : "Не опозноно."
                 )
                 .addField(
-                    "Aliases:",
+                    "Адиас(ы):",
                     command.aliases ?
                     `\`${command.aliases.join("` `")}\`` :
-                    "No aliases for this command."
+                    "Вторичные не опознаны."
                 )
                 .addField(
-                    "Usage:",
+                    "Использование:",
                     command.usage ?
                     `\`${prefix}${command.name} ${command.usage}\`` :
                     `\`${prefix}${command.name}\``
                 )
                 .addField(
-                    "Command Description:",
+                    "Описание команды:",
                     command.description ?
                     command.description :
-                    "No description for this command."
+                    "Не найдено."
                 )
                 .setFooter(
-                    `Requested by ${message.member.displayName}`,
+                    `Использовал ${message.member.displayName}`,
                     message.author.displayAvatarURL({
                         dynamic: true
                     })
