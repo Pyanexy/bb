@@ -10,11 +10,10 @@
      "nodes": [
     
     {
+      "id": "Main",
       "host": "lava.link",
       "port": 80,
-      "password": "youshallnotpass",
-      "retryDelay": 3000,
-      "secure": true
+      "password": "youshallnotpass"
     
     }
   ]
