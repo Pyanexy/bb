@@ -4,7 +4,7 @@ module.exports = {
     name: "autoplay",
     aliases: ["ap"],
 	category: "Music",
-    description: "Toggle music autoplay",
+    description: "Автоматическая музыка",
     args: false,
     usage: "",
     permission: [],
@@ -19,7 +19,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new MessageEmbed()
                 .setColor("RED")
-                .setDescription("There is no music playing.");
+                .setDescription("В очереди нет песен");
             return message.channel.send({embeds: [thing]});
         }
 
@@ -38,7 +38,7 @@ module.exports = {
             let thing = new MessageEmbed()
                 .setColor(message.client.embedColor)
                 .setTimestamp()
-                .setDescription(`${emojireplay} Autoplay is now **enabled**`)
+                .setDescription(`${emojireplay} режим **включён**`)
            return message.channel.send({embeds: [thing]});
         } else {
             player.set("autoplay", false);
@@ -46,7 +46,7 @@ module.exports = {
             let thing = new MessageEmbed()
                 .setColor(message.client.embedColor)
                 .setTimestamp()
-                .setDescription(`${emojireplay} Autoplay is now **disabled**`)
+                .setDescription(`${emojireplay} режим **отключён**`)
                
             return message.channel.send({embeds: [thing]});
         }
