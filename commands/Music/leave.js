@@ -4,7 +4,7 @@ module.exports = {
 	name: "leave",
     aliases: ["dc"],
     category: "Music",
-    description: "Leave voice channel",
+    description: "Покинул войс канал",
     args: false,
     usage: "",
     permission: [],
@@ -22,7 +22,7 @@ module.exports = {
         
         let thing = new MessageEmbed()
             .setColor(message.client.embedColor)
-            .setDescription(`${emojiLeave} **Leave the voice channel**\nThank you for using ${message.client.user.username}!`)
+            .setDescription(`${emojiLeave} **Покинул войс канал**\nСпасибо что использовали ${message.client.user.username}!`)
           return message.channel.send({embeds: [thing]});
 	
     }
