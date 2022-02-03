@@ -4,9 +4,9 @@ module.exports = {
     name: "clearqueue",
     aliases: ["cq"],
     category: "Music",
-  	description: "Clear Queue",
+  	description: "Очистить очередь",
 	  args: false,
-    usage: "<Number of song in queue>",
+    usage: "<Укажи цифру для очистки очереди>",
     permission: [],
     owner: false,
     player: true,
@@ -19,7 +19,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new MessageEmbed()
                 .setColor("RED")
-                .setDescription("There is no music playing.");
+                .setDescription("В очереди нет песен");
             return message.channel.send({embeds: [thing]});
         }
 
@@ -30,7 +30,7 @@ module.exports = {
 		let thing = new MessageEmbed()
 			.setColor(message.client.embedColor)
 			.setTimestamp()
-			.setDescription(`${emojieject} Removed all songs from the queue`)
+			.setDescription(`${emojieject} Очередь была полностью очищена`)
 			  return message.channel.send({embeds: [thing]});
     }
 };
