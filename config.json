@@ -1,0 +1,21 @@
+{
+    "token": "OTM4ODIyODIwODA3NDY3MDc5.Yfv44g.jSgT2RWI5BFM19sdUeurlYYS6tY", 
+    "mongourl": "mongodb+srv://nut:pyanexy@bib.zjsot.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "ksoftapi": "AIzaSyAAg3GHxipuyDz7KsCAv434yoFT56TR9LQ",
+    "prefix": "n!",
+    "ownerID": "532710970938884106", 
+    "SpotifyID": "bf5ee2a72bae40ffadc71a47280e5ff9",
+    "SpotifySecret": "053469ffeb3844079fab734ebf3090c2",
+    "embedColor": "#DD5209",
+     "nodes": [
+    
+    {
+      "host": "https://lavalink-repl-2.pranavjs.repl.co",
+      "port": 443,
+      "password": "youshallnotpass",
+      "retryDelay": 3000,
+      "secure": true
+    
+    }
+  ]
+}
