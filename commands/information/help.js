@@ -49,7 +49,7 @@ module.exports = {
 
                     obyy = {
                         name: `\`${e}\``,
-                        value: des || 'Описания не существует',
+                        value: "",
                         inline: true
                     }
 
