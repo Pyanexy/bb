@@ -6,7 +6,7 @@ module.exports = {
 	name: "nowplaying",
     aliases: ["np"],
     category: "Music",
-    description: "Show now playing song",
+    description: "Показывает проигрывамыю песню",
     args: false,
     usage: "",
     permission: [],
@@ -21,7 +21,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new MessageEmbed()
                 .setColor("RED")
-                .setDescription("There is no music playing.");
+                .setDescription("Музыка не играет.");
             return message.channel.send(thing);
         }
 
@@ -32,12 +32,12 @@ module.exports = {
         // Progress Bar
         var total = song.duration;
         var current = player.position;
-        var size = 20;
+        var size = 10;
         var line = '▬';
         var slider = '🔘';
 
         let embed = new MessageEmbed()
-            .setDescription(`${emojimusic} **Now Playing**\n[${song.title}](${song.uri}) - \`[${convertTime(song.duration)}]\` [<@${song.requester.id}>]`)
+            .setDescription(`${emojimusic} **Проигрывайтся**\n[${song.title}](${song.uri}) - \`[${convertTime(song.duration)}]\` [<@${song.requester.id}>]`)
             .setThumbnail(song.displayThumbnail("3"))
             .setColor(message.client.embedColor)
             .addField("\u200b", progressbar(total, current, size, line, slider))
