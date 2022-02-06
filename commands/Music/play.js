@@ -5,9 +5,9 @@ module.exports = {
     name: "play",
     category: "Music",
     aliases: ["p"],
-    description: "Plays audio from YouTube or Soundcloud",
+    description: "Проигрывет такие как YouTube, Soundcloud, Spotify",
     args: true,
-    usage: "<YouTube URL | Video Name | Spotify URL>",
+    usage: "<YouTube сыллка | Название видео | Spotify сыллка >",
     permission: [],
     owner: false,
     player: false,
@@ -21,7 +21,7 @@ module.exports = {
         if (player && message.member.voice.channel !== message.guild.me.voice.channel) {
             let thing = new MessageEmbed()
                 .setColor("RED")
-                .setDescription(`You must be in the same channel as ${message.client.user}`);
+                .setDescription(`Зайдите к ${message.client.user}`);
              message.channel.send({embeds: [thing]});
         } else if (!player) {
             var player = message.client.manager.create({
@@ -50,13 +50,13 @@ module.exports = {
                 throw res.exception;
             }
         } catch (err) {
-            return message.reply(`there was an error while searching: ${err.message}`);
+            return message.reply(`Произошла ошибка: ${err.message}`);
         }
 
         switch (res.loadType) {
             case 'NO_MATCHES':
                 if (!player.queue.current) player.destroy();
-                return message.reply('there were no results found.');
+                return message.reply('Не найдено ничего');
             case 'TRACK_LOADED':
                 var track = res.tracks[0];
                 player.queue.add(track);
@@ -67,7 +67,7 @@ module.exports = {
                         .setColor(client.embedColor)
                         .setTimestamp()
                         .setThumbnail(track.displayThumbnail("hqdefault"))
-                        .setDescription(`${emojiaddsong} **Added Song to queue**\n[${track.title}](${track.uri}) - \`[${convertTime(track.duration)}]\``)
+                        .setDescription(`${emojiaddsong} **Добавлено в очередь**\n[${track.title}](${track.uri}) - \`[${convertTime(track.duration)}]\``)
                     return message.channel.send({embeds: [thing]});
                 }
             case 'PLAYLIST_LOADED':
@@ -76,7 +76,7 @@ module.exports = {
                 var thing = new MessageEmbed()
                     .setColor(client.embedColor)
                     .setTimestamp()
-                    .setDescription(`${emojiplaylist} **Added Playlist to queue**\n${res.tracks.length} Songs **${res.playlist.name}** - \`[${convertTime(res.playlist.duration)}]\``)
+                    .setDescription(`${emojiplaylist} **Плейлист добавлен в очередь**\n${res.tracks.length} Songs **${res.playlist.name}** - \`[${convertTime(res.playlist.duration)}]\``)
                 return message.channel.send({embeds: [thing]});
             case 'SEARCH_RESULT':
                 var track = res.tracks[0];
@@ -88,7 +88,7 @@ module.exports = {
                         .setColor(client.embedColor)
                         .setTimestamp()
                         .setThumbnail(track.displayThumbnail("hqdefault"))
-                        .setDescription(`${emojiaddsong} **Added Song to queue**\n[${track.title}](${track.uri}) - \`[${convertTime(track.duration)}]\`[<@${track.requester.id}>]`)
+                        .setDescription(`${emojiaddsong} **Добавлено в очередь**\n[${track.title}](${track.uri}) - \`[${convertTime(track.duration)}]\`[<@${track.requester.id}>]`)
                     return message.channel.send({embeds: [thing]});
                 }
         }
