@@ -48,7 +48,7 @@ client.manager = new Manager({
 
 client.on("raw", (d) => client.manager.updateVoiceState(d));
 /**
- * Mongodb connection
+ * Подключение базы данных 
  */
 
 const dbOptions = {
@@ -63,53 +63,53 @@ const dbOptions = {
   mongoose.set("useFindAndModify", false);
   mongoose.Promise = global.Promise;
 	mongoose.connection.on('connected', () => {
-		client.logger.log('[DB] DATABASE CONNECTED', "ready");
+		client.logger.log('[ДБ] ✔', "ready");
 		});
 	mongoose.connection.on('err', (err) => {
-			console.log(`Mongoose connection error: \n ${err.stack}`, "error");
+			console.log(`Базы данных подключена с ошибкой: \n ${err.stack}`, "error");
 		});
 	mongoose.connection.on('disconnected', () => {
-			console.log('Mongoose disconnected');
+			console.log('[ДБ] ❌');
 		});
     
 /**
  * Error Handler
  */
-client.on("disconnect", () => console.log("Bot is disconnecting..."))
-client.on("reconnecting", () => console.log("Bot reconnecting..."))
+client.on("disconnect", () => console.log("Бот отключён..."))
+client.on("reconnecting", () => console.log("Бот переподключается..."))
 client.on('warn', error => console.log(error));
 client.on('error', error => console.log(error));
 process.on('unhandledRejection', error => console.log(error));
 process.on('uncaughtException', error => console.log(error));
 
 /**
- * Client Events
+ * Клиент и его мероприятия 
  */
 readdirSync("./events/Client/").forEach(file => {
     const event = require(`./events/Client/${file}`);
     let eventName = file.split(".")[0];
-    client.logger.log(`Loading Events Client ${eventName}`, "event");
+    client.logger.log(`Загрузка Клиента: ${eventName}`, "event");
     client.on(eventName, event.bind(null, client));
 });
 
 /**
- * Erela Manager Events
+ * Лава линк и его мероприятия 
  */
 readdirSync("./events/Lavalink/").forEach(file => {
     const event = require(`./events/Lavalink/${file}`);
     let eventName = file.split(".")[0];
-    client.logger.log(`Loading Events Lavalink ${eventName}`, "event");
+    client.logger.log(`Загрузка лава линка: ${eventName}`, "event");
     client.manager.on(eventName, event.bind(null, client));
 });
 
 /**
- * Import all commands
+ * Загрузка команд
  */
 readdirSync("./commands/").forEach(dir => {
     const commandFiles = readdirSync(`./commands/${dir}/`).filter(f => f.endsWith('.js'));
     for (const file of commandFiles) {
         const command = require(`./commands/${dir}/${file}`);
-        client.logger.log(`Loading ${command.category} commands ${command.name}`, "cmd");
+        client.logger.log(`Загрузка ${command.category} команда ${command.name}`, "cmd");
         client.commands.set(command.name, command);
     }
 });
