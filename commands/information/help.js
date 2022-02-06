@@ -49,7 +49,7 @@ module.exports = {
 
                     obyy = {
                         name: `\`${e}\``,
-                        value: "",
+                        value: "n",
                         inline: true
                     }
 
