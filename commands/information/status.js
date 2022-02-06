@@ -3,6 +3,7 @@ const moment = require("moment");
 require("moment-duration-format");
 const os = require('os')
 const si = require('systeminformation');
+moment.locale("ru");
 
 module.exports = {
     name: "status",
@@ -14,7 +15,7 @@ module.exports = {
     permission: [],
     owner: false,
     execute: async (message, args, client, prefix) => {
-       const duration1 = moment.duration(message.client.uptime).format(" Д [Дней], Ч [часов], м [минут], с [секунд]");
+       const duration1 = moment.duration(message.client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
         const cpu = await si.cpu();
         const about = message.client.emoji.about;
         const embed = new MessageEmbed()
