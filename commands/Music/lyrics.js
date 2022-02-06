@@ -8,7 +8,7 @@ module.exports = {
 	name: "lyrics",
     aliases: ["ly"],
     category: "Music",
-    description: "Get lyrics for the currently playing song",
+    description: "Достанет текст песни",
     args: false,
     usage: "",
     permission: [],
@@ -16,18 +16,18 @@ module.exports = {
 	 execute: async (message, args, client, prefix) => {
     
 	  try {
-            if (!ksoft) return message.channel.send({embeds: [new MessageEmbed().setDescription('Please ask developer to add ksoft API Key')]})
+            if (!ksoft) return message.channel.send({embeds: [new MessageEmbed().setDescription('Не указан айпи ключь')]})
             const player = message.client.manager.get(message.guild.id);
-            if (!args[0] && !player) return message.channel.send({embeds: [new MessageEmbed().setDescription('Specify a title')]})
+            if (!args[0] && !player) return message.channel.send({embeds: [new MessageEmbed().setDescription('Не указан текст')]})
             let songTitle = args.join(' ') ? args.join(' ') : player.queue.current.title;
-            if (!songTitle) return message.channel.send({embeds: [new MessageEmbed().setDescription('No music currently playing. Specify a title')]})
+            if (!songTitle) return message.channel.send({embeds: [new MessageEmbed().setDescription('Музыка не играет, под текст не найден')]})
 
-            const wait = await message.channel.send({embeds: [new MessageEmbed().setDescription('Searching...')]})
+            const wait = await message.channel.send({embeds: [new MessageEmbed().setDescription('Поиск..')]})
             let err;
             const lyrics = await ksoft.lyrics.get(songTitle).catch(x => {
                 if (!wait.deleted) { wait.delete() };
                 err = 'yes'
-                return message.channel.send({embeds: [new MessageEmbed().setDescription('No result was found')]})
+                return message.channel.send({embeds: [new MessageEmbed().setDescription('Не найдено')]})
             })
             if(err == 'yes') return;
             const chunked = this.chunkString(lyrics.lyrics, 1600)
@@ -43,11 +43,11 @@ module.exports = {
             let embeds = []
             chunked.forEach((x, i) => {
                 const embed = new MessageEmbed()
-                    .setTitle(lyrics.name ? lyrics.name : 'Unknown')
+                    .setTitle(lyrics.name ? lyrics.name : 'Не обозначено')
                     .setDescription(`${lyrics.artist ? lyrics.artist.name : ''}\n\n\n${x}`)
                     .setThumbnail(lyrics.artwork)
                     .setColor(colors[i])
-                    .setFooter(`Powered by KSoft.Si`, lyrics.artwork)
+                    .setFooter(`Предоставил Nutella`, lyrics.artwork)
                 embeds.push(embed)
             })
 
@@ -91,11 +91,11 @@ module.exports = {
             let embeds = []
             chunked.forEach((x, i) => {
                 const embed = new MessageEmbed()
-                    .setTitle(lyrics.name ? lyrics.name : 'Unknown')
+                    .setTitle(lyrics.name ? lyrics.name : 'Не обозначено')
                     .setDescription(`${lyrics.artist ? lyrics.artist.name : ''}\n\n\n${x}`)
                     .setThumbnail(lyrics.artwork)
                     .setColor('#0077be')
-                    .setFooter(`Powered by KSoft.Si`, lyrics.artwork)
+                    .setFooter(`Предоставил Nutella`, lyrics.artwork)
                 embeds.push(embed)
             })
 
