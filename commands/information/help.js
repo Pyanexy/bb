@@ -47,7 +47,7 @@ module.exports = {
 
                     obyy = {
                         name: `\`${e}\``,
-                        value: "n",
+                        value: "Используйте `${prefix}${e}`",
                         inline: true
                     }
 
