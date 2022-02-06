@@ -45,8 +45,6 @@ module.exports = {
 
                     e = e.replace('.js', '');
 
-                    const des = client.commands.get(e).description;
-
                     obyy = {
                         name: `\`${e}\``,
                         value: "n",
