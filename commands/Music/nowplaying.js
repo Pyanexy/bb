@@ -33,8 +33,8 @@ module.exports = {
         var total = song.duration;
         var current = player.position;
         var size = 10;
-        var line = '▬';
-        var slider = '🔘';
+        var line = '—';
+        var slider = '▇';
 
         let embed = new MessageEmbed()
             .setDescription(`${emojimusic} **Проигрывайтся**\n[${song.title}](${song.uri}) - \`[${convertTime(song.duration)}]\` [<@${song.requester.id}>]`)
