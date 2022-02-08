@@ -21,10 +21,10 @@ const {
   
     let button = new MessageActionRow()
       .addComponents(
-        new MessageButton().setCustomId(`-1`).setEmoji('<:pagex2:940405389885837382>').setStyle('SUCCESS'),
+        new MessageButton().setCustomId(`-1`).setEmoji('<:pagex3:940406342127058944>').setStyle('SUCCESS'),
         new MessageButton().setCustomId(`-2`).setEmoji('⬅️').setStyle('SUCCESS'),
         new MessageButton().setCustomId(`-3`).setEmoji('➡️').setStyle('SUCCESS'),
-        new MessageButton().setCustomId(`-4`).setEmoji('<:pagex3:940406342127058944>').setStyle('SUCCESS')
+        new MessageButton().setCustomId(`-4`).setEmoji('<:pagex2:940405389885837382>').setStyle('SUCCESS')
       );
   
     let buttons = [
