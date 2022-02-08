@@ -15,14 +15,17 @@ module.exports = {
 			.addComponents(
         new MessageButton()
     .setLabel("Пригласить")
+    .setEmoji("🤖")
     .setStyle("LINK")
     .setURL(`https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=36768832&scope=applications.commands%20bot`),
 			new MessageButton()
     .setLabel("ГидХаю")
+    .setEmoji("🔎")
     .setStyle("LINK")
-    .setURL("https://github.com/Pranav6966/lavalink-musicbot-with-buttons.git"),
+    .setURL("https://github.com/Pyanexy"),
     new MessageButton()
     .setLabel("Поддержка")
+    .setEmoji("🛠")
     .setStyle("LINK")
     .setURL("https://discord.gg/jgnwPGTQ6j")
 			);
@@ -31,7 +34,7 @@ module.exports = {
             .setAuthor('Нутела здесь!', 'http://msurguy.github.io/gifloopcoder.com/example2.gif')
             .setThumbnail('http://msurguy.github.io/gifloopcoder.com/example2.gif')
             .setColor(client.embedColor)
-            .addField('Разработал', '[PYANEXY#0064](https://github.com/PRANAV6966)', true)
+            .addField('Разработал', '[PYANEXY#0064](https://github.com/Pyanexy)', true)
             .addField('Сервер', '[Нутела](https://discord.gg/jgnwPGTQ6j)', true)
         return message.channel.send({embeds: [mainPage], components: [row]});
     }
