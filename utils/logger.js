@@ -1,5 +1,6 @@
 const chalk = require("chalk");
 const moment = require("moment");
+moment.locale("ru");
 
 module.exports = class Logger {
 	static log (content, type = "log") {
