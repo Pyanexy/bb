@@ -12,7 +12,7 @@ module.exports = async (client) => {
   		let activ = statuses[Math.floor(Math.random()*statuses.length)];
   		client.user.setActivity( activ , {type: "COMPETING" });
   	}, 10000)
-Client.user.setPresence({
+client.user.setPresence({
     status: "idle"
 });
 }
