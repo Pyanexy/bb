@@ -7,12 +7,16 @@ module.exports = async (client) => {
     client.logger.log(`Запущены ${client.guilds.cache.size} серверов, в общей сложности ${client.users.cache.size} пользователи`, "ready");
 
     //Game
-    client.user.setActivity({ 
-status: "idle",
-activities: [{
-name: "музыке", 
-type: "COMPETING"
-}]
-});
-
+    let statuses = ['музыке', `префикс : ${prefix}`];
+    setInterval(function() {
+    let status1 = statuses[Math.floor(Math.random()*statuses.length)];
+ 
+    client.user.setPresence({ 
+           status: "idle",
+    activities: [{
+    name: status1, 
+    type: "COMPETING"
+                }]
+    });
+}, 10000)
 }
