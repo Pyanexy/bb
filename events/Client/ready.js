@@ -7,18 +7,12 @@ module.exports = async (client) => {
     client.logger.log(`Запущены ${client.guilds.cache.size} серверов, в общей сложности ${client.users.cache.size} пользователи`, "ready");
 
     //Game
-    let statuses = ['музыке', `префикс: ${prefix}`];
-    let activ = "CONNECTED"
-    setInterval(function() {
-  		let status1 = statuses[Math.floor(Math.random()*statuses.length)];
-  		let activity = activ[Math.floor(Math.random()*activ.length)];
-client.user.setActivity({ 
+    client.user.setActivity({ 
 status: "idle",
 activities: [{
-name: status1, 
-type: activity
+name: "музыке", 
+type: "COMPETING"
 }]
 });
-  	}, 10000)
 
 }
