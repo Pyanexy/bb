@@ -4,7 +4,7 @@ module.exports = async (client) => {
 
     client.manager.init(client.user.id);
     client.logger.log(`${client.user.username} В сети!`, "здесь");
-    client.logger.log(`Ready on ${client.guilds.cache.size} servers, for a total of ${client.users.cache.size} users`, "ready");
+    client.logger.log(`Запущены ${client.guilds.cache.size} серверов, и вот столько ${client.users.cache.size} юзеров `, "ready");
 
     //Game
     let statuses = ['Привет!', `Префикс : ${prefix}`];
