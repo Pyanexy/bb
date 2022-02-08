@@ -9,7 +9,7 @@ module.exports = async (client) => {
     //Game
     let statuses = ['Привет!', `Префикс : ${prefix}`];
     setInterval(function() {
-  		let activ = statuses[Math.floor(Math.random()*statuses.length)];
-  		client.user.setActivity( activ , {type: "COMPETING" });
+  		let status = statuses[Math.floor(Math.random()*statuses.length)];
+  		client.user.setActivity(status, {type: "COMPETING"});
   	}, 10000)
 }
