@@ -161,7 +161,6 @@ client.on('interactionCreate', async (interaction) => {
 
         await msg.edit({ embeds: [infoEmbed] })
 
-        }
      } else if (interaction.values[0] === "utils") {
 
             await interaction.deferUpdate()
