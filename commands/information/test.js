@@ -10,31 +10,40 @@ module.exports = {
     permission: [],
     owner: false,
     execute: async (message, args, client, prefix) => {
-const ex1 = new MessageEmbed() // Создаём наш эмбэд 
-.setColor('#43e2f7') // Цвет нашего сообщения 
-.setTitle('Приветик :>') // Название эмбэд сообщения 
-.setAuthor(message.guild.name) // Автором будет название сервера 
-.setDescription(':^Мы любим вас!^:') // комментарий 
-.setTimestamp() // Дата отправки сообщения 
-.setFooter('Ваш бот © 2021'); 
+let helpMenu = new MessageActionRow()
+    .addComponents(
+      new MessageSelectMenu()
+      .setCustomId("help_menu")
+      .setPlaceholder('Меню помощи')
+      .setMinValues(1)
+      .setMaxValues(1)
+      .addOptions([
+        {
+          label: "Редакция",
+          description: "Редактируй как хочешь",
+          value: "settings",
+          emoji: "🛠"
+        },
+        {
+          label: "Информация",
+          description: "Ты проинформирован",
+          value: "info",
+          emoji: "📢"
+        },
+        {
+          label: "Музыка",
+          description: "Слушай музыку 24 на 7!",
+          value: "music",
+          emoji: "🎵"
+        },
+        ])
+    )
 
-const selectMenu = new MessageSelectMenu() 
-.setCustomId('select') 
-.setPlaceholder('Ничего') 
-.addOptions([ { 
-label: 'Первый', 
-description: 'Описание', 
-value: `Первый` 
-// Как сюда embed подставить??
- }, 
-{ 
-label: 'Второй', 
-  description: 'Описание2', 
-  value: `Второй` }, ]) 
-.setMaxValues(1); 
-const menu = new MessageActionRow() 
-.addComponents(selectMenu); 
-message.channel.send({content: 'ЫЫ', components: [menu]}); 
-    
+    let editEmbed = new MessageEmbed()
+    .setTitle('Меню помощи')
+    .setDescription('Упс Nutella решила сделать селект!')
+    .setColor(client.embedColor)
+
+      message.channel.send({ embeds: [editEmbed], components: [helpMenu]})
   }
 };
