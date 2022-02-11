@@ -130,7 +130,7 @@ client.on('interactionCreate', async (interaction) => {
 
             const settingsEmbed = new MessageEmbed()
         .setTitle("Команды Редакции")
-        .setDescription("
+        .setDescription(
           "`autorole`, `joinchannel`, `joinmessage`, `leavechannel`, `leavemessage` `prefix`"
         )
         .setColor(client.embedColor);
