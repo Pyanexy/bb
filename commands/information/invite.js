@@ -28,7 +28,7 @@ module.exports = {
     .setLabel("Поддержка")
     .setEmoji("<:Support:940399628929630268>")
     .setStyle("LINK")
-    .setURL("https://discord.gg/gfcv94hDhv")
+    .setURL("https://vanlink.ru/0n1ch")
 			);
 
           const mainPage = new MessageEmbed()
