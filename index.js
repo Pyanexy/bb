@@ -175,6 +175,7 @@ client.on('interactionCreate', async (interaction) => {
         await msg.edit({ embeds: [infoEmbed] })
 
         }
+ }
 })
 
 client.login(client.config.token);
