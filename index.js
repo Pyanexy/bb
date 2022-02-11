@@ -1,4 +1,4 @@
-const { Client, Collection } = require("discord.js");
+const { Client, Collection, MessageEmbed } = require("discord.js");
 const array = [];
 const { readdirSync } = require("fs");
 const mongoose = require('mongoose');
@@ -124,7 +124,7 @@ client.on('interactionCreate', async (interaction) => {
         if (interaction.values[0] === "settings") {
             await interaction.deferUpdate()
 
-            const settingsEmbed = new Discord.MessageEmbed()
+            const settingsEmbed = new MessageEmbed()
         .setTitle("Config Commands")
         .setDescription(
           "`autorole`, `antilink`, `joinchannel`, `joinmessage`, `leavechannel`, `leavemessage` `prefix`"
@@ -137,7 +137,7 @@ client.on('interactionCreate', async (interaction) => {
  
          await interaction.deferUpdate();
  
-         const musicEmbed = new Discord.MessageEmbed()
+         const musicEmbed = new MessageEmbed()
          .setTitle(`Music Commands`)
          .setDescription("`clearqueue`, `filter`, `filter list`, `info`, `jump`, `loop`, `lyrics`, `move`, `mute`, `pause`, `play`, `previoustrack`, `queue`, `remove`, `resume`, `unmute`, `volume`, `youtube`\n\n```Note: Music commands work only with slash commands!```")
          .setColor(client.embedColor)
@@ -148,7 +148,7 @@ client.on('interactionCreate', async (interaction) => {
 
             await interaction.deferUpdate()
 
-            const infoEmbed = new Discord.MessageEmbed()
+            const infoEmbed = new MessageEmbed()
         .setTitle("Info Commands")
         .setDescription(
           "`botinfo`, `emojiid`, `help`, `invite`, `ping`, `policy`, `report`, `userinfo`, `userid`, `serverinfo`, `suggest`"
