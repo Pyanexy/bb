@@ -162,6 +162,20 @@ client.on('interactionCreate', async (interaction) => {
         await msg.edit({ embeds: [infoEmbed] })
 
         }
+     } else if (interaction.values[0] === "utility") {
+
+            await interaction.deferUpdate()
+
+            const infoEmbed = new MessageEmbed()
+        .setTitle("Команды Полезность")
+        .setDescription(
+          "`translate`"
+        )
+        .setColor(client.embedColor);
+
+        await msg.edit({ embeds: [infoEmbed] })
+
+        }
     }
 })
 
