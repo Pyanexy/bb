@@ -27,7 +27,7 @@ module.exports = {
     .setLabel("Поддержка")
     .setEmoji("<:Support:940399628929630268>")
     .setStyle("LINK")
-    .setURL("https://discord.gg/jgnwPGTQ6j")
+    .setURL("https://vanlink.ru/0n1ch")
 			);
 
       const mainPage = new MessageEmbed()
@@ -35,7 +35,7 @@ module.exports = {
             .setThumbnail('http://msurguy.github.io/gifloopcoder.com/example2.gif')
             .setColor(client.embedColor)
             .addField('Разработал', '[PYANEXY#0064](https://github.com/Pyanexy)', true)
-            .addField('Сервер', '[Нутела](https://discord.gg/jgnwPGTQ6j)', true)
+            .addField('Сервер', '[Нутела](https://vanlink.ru/0n1ch)', true)
         return message.channel.send({embeds: [mainPage], components: [row]});
     }
 }
