@@ -1,10 +1,10 @@
 const { MessageEmbed, MessageActionRow, MessageSelectMenu} = require("discord.js");
 
 module.exports = {
-    name: "test",
+    name: "help",
     category: "Information",
-    aliases: [ "botinfo" ],
-    description: "See description about this project",
+    aliases: [ "h", "pls" ],
+    description: "",
     args: false,
     usage: "",
     permission: [],
@@ -36,6 +36,12 @@ let helpMenu = new MessageActionRow()
           value: "music",
           emoji: "🎵"
         },
+        {
+         label: "Полезность",
+         description: "Может это тебе понадобится",
+         value: "utils",
+         emoji: "🔥"
+        }
         ])
     )
 
