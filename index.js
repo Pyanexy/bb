@@ -115,12 +115,50 @@ readdirSync("./commands/").forEach(dir => {
 });
 
 client.on('interactionCreate', async (interaction) => {
-  if (interaction.isButton() && interaction.customId == "archive") {
-    interaction.reply({ content: 'Pong!', ephemeral: true });
-  }
-  if (interaction.isSelectMenu() && interaction.customId == "select") {
-    interaction.update({ content: `${interaction.values[0]}`});
-  }
+    if (!interaction.isSelectMenu()) return;
+
+    if (interaction.customId === "help_menu") {
+
+        let msg = await interaction.channel.messages.fetch(interaction.message.id)
+
+        if (interaction.values[0] === "settings") {
+            await interaction.deferUpdate()
+
+            const settingsEmbed = new Discord.MessageEmbed()
+        .setTitle("Config Commands")
+        .setDescription(
+          "`autorole`, `antilink`, `joinchannel`, `joinmessage`, `leavechannel`, `leavemessage` `prefix`"
+        )
+        .setColor("RANDOM");
+
+      await msg.edit({ embeds: [settingsEmbed] });
+
+            } else if (interaction.values[0] === "music") {
+ 
+         await interaction.deferUpdate();
+ 
+         const musicEmbed = new Discord.MessageEmbed()
+         .setTitle(`Music Commands`)
+         .setDescription("`clearqueue`, `filter`, `filter list`, `info`, `jump`, `loop`, `lyrics`, `move`, `mute`, `pause`, `play`, `previoustrack`, `queue`, `remove`, `resume`, `unmute`, `volume`, `youtube`\n\n```Note: Music commands work only with slash commands!```")
+         .setColor(client.embedColor)
+ 
+         await msg.edit({ embeds: [musicEmbed] })
+
+        } else if (interaction.values[0] === "info") {
+
+            await interaction.deferUpdate()
+
+            const infoEmbed = new Discord.MessageEmbed()
+        .setTitle("Info Commands")
+        .setDescription(
+          "`botinfo`, `emojiid`, `help`, `invite`, `ping`, `policy`, `report`, `userinfo`, `userid`, `serverinfo`, `suggest`"
+        )
+        .setColor(client.embedColor);
+
+        await msg.edit({ embeds: [infoEmbed] })
+
+        }
+    }
 })
 
 client.login(client.config.token);
