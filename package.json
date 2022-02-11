@@ -27,6 +27,7 @@
   "bugs": "https://github.com/Pranav6966/lavalink-musicbot-with-buttons/issues",
   "homepage": "https://github.com/Pranav6966/lavalink-musicbot-with-buttons/#readme",
   "dependencies": {
+    "simply-djs": "^2.5.2",
     "@iamtraction/google-translate": "^1.1.2",
     "@ksoft/api": "^3.1.9",
     "audit": "^0.0.6",
