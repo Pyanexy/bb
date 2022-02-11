@@ -41,15 +41,10 @@ module.exports = {
     )
 
     let editEmbed = new MessageEmbed()
-    .setTitle('Help Menu')
-    .setDescription('Choose an option from the menu below!')
-    .setColor("GREEN")
+    .setTitle('Меню помощи')
+    .setDescription('Упс Nutella решила сделать селект!')
+    .setColor(client.embedColor)
 
-      message.channel.send({ embeds: [editEmbed], components: [helpMenu]}).then(msg=>{
-        setTimeout(async function () {
-          await msg.delete();
-        }, 180000)
-      })
-    }
+      message.channel.send({ embeds: [editEmbed], components: [helpMenu]})
   }
 };
