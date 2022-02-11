@@ -131,7 +131,7 @@ client.on('interactionCreate', async (interaction) => {
             const settingsEmbed = new MessageEmbed()
         .setTitle("Команды Редакции")
         .setDescription(
-          "`autorole`, `joinchannel`, `joinmessage`, `leavechannel`, `leavemessage` `prefix`"
+          "`prefix`"
         )
         .setColor(client.embedColor);
 
@@ -143,7 +143,7 @@ client.on('interactionCreate', async (interaction) => {
  
          const musicEmbed = new MessageEmbed()
          .setTitle(`Команды Музыки`)
-         .setDescription("`clearqueue`, `autoplay`, `247`, `play`, `queue`, `skip`, `loop`, `nowplaying`, `leave`, `join`")
+         .setDescription("`clearqueue`, `autoplay`, `247`, `play`, `queue`, `skip`, `loop`, `nowplaying`, `leave`, `join`, `lyrics`, `filtera`, `shuffle`, `pause`, `resume`, `remove`, `seek`, `volume`")
          .setColor(client.embedColor)
  
          await msg.edit({ embeds: [musicEmbed] })
@@ -155,7 +155,7 @@ client.on('interactionCreate', async (interaction) => {
             const infoEmbed = new MessageEmbed()
         .setTitle("Команды Информации")
         .setDescription(
-          "`botinfo`, `help`, `invite`, `ping`, `userinfo`, `serverinfo`"
+          "`about`, `botinfo`, `help`, `invite`, `ping`, `userinfo`, `serverinfo`"
         )
         .setColor(client.embedColor);
 
@@ -168,7 +168,7 @@ client.on('interactionCreate', async (interaction) => {
             const infoEmbed = new MessageEmbed()
         .setTitle("Команды Полезность")
         .setDescription(
-          "`translate`"
+          "`translate`, `avatar`, `calculator`"
         )
         .setColor(client.embedColor);
 
