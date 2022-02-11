@@ -4,9 +4,14 @@ moment.locale("ru");
 
 module.exports = {
     name: "userinfo",
-    description: "Get info about your account or mentiobned user's account!",
-    aliases: ["ui", "user", "u"],
-    execute: async (client, message, args, prefix) => {
+    category: "Information",
+    aliases: [ "ui", "user", "u" ],
+    description: "See description about this project",
+    args: false,
+    usage: "",
+    permission: [],
+    owner: false,
+    execute: async (message, args, client, prefix) => {
         const permissions = {
             "ADMINISTRATOR": "Админестратор",
             "MANAGE_GUILD": "Управлять сервером",
