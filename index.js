@@ -114,6 +114,10 @@ readdirSync("./commands/").forEach(dir => {
     }
 });
 
+/**
+ * для хелп селекта
+ */
+
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isSelectMenu()) return;
 
@@ -125,11 +129,11 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.deferUpdate()
 
             const settingsEmbed = new MessageEmbed()
-        .setTitle("Config Commands")
-        .setDescription(
-          "`autorole`, `antilink`, `joinchannel`, `joinmessage`, `leavechannel`, `leavemessage` `prefix`"
+        .setTitle("Команды Редакции")
+        .setDescription("
+          "`autorole`, `joinchannel`, `joinmessage`, `leavechannel`, `leavemessage` `prefix`"
         )
-        .setColor("RANDOM");
+        .setColor(client.embedColor);
 
       await msg.edit({ embeds: [settingsEmbed] });
 
@@ -138,8 +142,8 @@ client.on('interactionCreate', async (interaction) => {
          await interaction.deferUpdate();
  
          const musicEmbed = new MessageEmbed()
-         .setTitle(`Music Commands`)
-         .setDescription("`clearqueue`, `filter`, `filter list`, `info`, `jump`, `loop`, `lyrics`, `move`, `mute`, `pause`, `play`, `previoustrack`, `queue`, `remove`, `resume`, `unmute`, `volume`, `youtube`\n\n```Note: Music commands work only with slash commands!```")
+         .setTitle(`Команды Музыки`)
+         .setDescription("`clearqueue`, `autoplay`, `247`, `play`, `queue`, `skip`, `loop`, `nowplaying`, `leave`, `join`")
          .setColor(client.embedColor)
  
          await msg.edit({ embeds: [musicEmbed] })
@@ -149,9 +153,9 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.deferUpdate()
 
             const infoEmbed = new MessageEmbed()
-        .setTitle("Info Commands")
+        .setTitle("Команды Информации")
         .setDescription(
-          "`botinfo`, `emojiid`, `help`, `invite`, `ping`, `policy`, `report`, `userinfo`, `userid`, `serverinfo`, `suggest`"
+          "`botinfo`, `help`, `invite`, `ping`, `userinfo`, `serverinfo`"
         )
         .setColor(client.embedColor);
 
