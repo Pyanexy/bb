@@ -114,5 +114,13 @@ readdirSync("./commands/").forEach(dir => {
     }
 });
 
+client.on('interactionCreate', async (interaction) => {
+  if (interaction.isButton() && interaction.customId == "archive") {
+    interaction.reply({ content: 'Pong!', ephemeral: true });
+  }
+  if (interaction.isSelectMenu() && interaction.customId == "select") {
+    interaction.update({ content: `${interaction.values[0]}`});
+  }
+})
 
 client.login(client.config.token);
