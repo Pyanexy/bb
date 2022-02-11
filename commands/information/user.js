@@ -6,7 +6,7 @@ module.exports = {
     name: "userinfo",
     description: "Get info about your account or mentiobned user's account!",
     aliases: ["ui", "user", "u"],
-    ex: async (client, message, args, prefix) => {
+    execute: async (client, message, args, prefix) => {
         const permissions = {
             "ADMINISTRATOR": "Админестратор",
             "MANAGE_GUILD": "Управлять сервером",
