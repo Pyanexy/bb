@@ -53,7 +53,7 @@ let helpMenu = new MessageActionRow()
 
     let editEmbed = new MessageEmbed()
     .setTitle('Меню помощи')
-    .setImage(Canvas.loadImage(message.guild.iconURL( { format: 'png', size: 512 } ) ))
+    .setImage(message.guild.iconURL( { format: 'png', size: 512px x 512px } ) )
     .setDescription('Упс Nutella решила сделать селект!')
     .setColor(client.embedColor)
 
