@@ -12,10 +12,10 @@ permission: [],
 owner: false, 
 execute: async (message, args, client, prefix, Discord) => {
 
-        const member = message.mentions.members.first();
+        const member = message.mentions.users.first();
         let time = args[1];
         const reason = args.slice(2).join(' ');
-        const role = message.guild.roles.cache.find(role => role.name === 'Muted')
+        const role = message.guild.roles.cache.find(role => role.name === 'Заглушен')
 
         if (!member) return message.reply('Укажите пользователя!');
         if (!time) return message.reply('Укажите время!');
@@ -29,7 +29,7 @@ execute: async (message, args, client, prefix, Discord) => {
                 message.channel.send('Нет приглушенной роли.. создаю ее..!')
                 let muterole = await message.guild.roles.create({
                  
-                        name: 'Muted',
+                        name: 'Заглушен',
                         permissions: [],
                    
                 });
@@ -48,17 +48,32 @@ execute: async (message, args, client, prefix, Discord) => {
                 console.log(error)
             }
         };
-        let role2 = message.guild.roles.cache.find(role => role.name === 'Muted')
+        let role2 = message.guild.roles.cache.find(role => role.name === 'Заглушен')
         if (member.roles.cache.has(role2)) return message.reply('Пользователь уже отключен! ')
 
         if (member.roles.highest.position >= message.member.roles.highest.position) return message.reply('Вы не можете заглушить этого пользователя')
 
 
         await member.roles.add(role2)
-        message.channel.send(`${member.user.username} Был замьчен на ${ms(ms(time))}, Причина: ${reason}`)
+     const mtembde = new MessageEmbed()
+      .setTitle("Действие: Tempmute")
+      .setColor(client.embedColor)
+      .addField("Пользователь:", user)
+      .addField("Причина", reason)
+      .addField("Модератор:", message.member.displayName)
+      .addField("Время", time, true);
+message.channel.send({ embeds: [mtembde] });
 
+const mtuembde = new MessageEmbed()
+      .setTitle("ТЕБЯ ЗАГЛУШИЛИ!!")
+      .setColor(client.embedColor)
+      .addField("Причина", reason)
+      .addField("Модератор:", message.member.displayName)
+      .addField("Время", time, true);
         setTimeout(() => {
             member.roles.remove(role2)
+   
+          member.send({ embeds: [mtuembde] });
         }, ms(time))
 
     }
