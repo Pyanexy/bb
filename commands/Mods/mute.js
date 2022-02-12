@@ -15,7 +15,7 @@ execute: async (message, args, client, prefix, Discord) => {
         const member = message.mentions.users.first();
         let time = args[1];
         const reason = args.slice(2).join(' ');
-        const role = message.guild.roles.cache.find(role => role.name === 'Заглушен')
+        const role = message.guild.roles.cache.find(role => role.name === 'Muted)
 
         if (!member) return message.reply('Укажите пользователя!');
         if (!time) return message.reply('Укажите время!');
@@ -29,7 +29,7 @@ execute: async (message, args, client, prefix, Discord) => {
                 message.channel.send('Нет приглушенной роли.. создаю ее..!')
                 let muterole = await message.guild.roles.create({
                  
-                        name: 'Заглушен',
+                        name: 'Muted,
                         permissions: [],
                    
                 });
@@ -48,7 +48,7 @@ execute: async (message, args, client, prefix, Discord) => {
                 console.log(error)
             }
         };
-        let role2 = message.guild.roles.cache.find(role => role.name === 'Заглушен')
+        let role2 = message.guild.roles.cache.find(role => role.name === 'Muted)
         if (member.roles.cache.has(role2)) return message.reply('Пользователь уже отключен! ')
 
         if (member.roles.highest.position >= message.member.roles.highest.position) return message.reply('Вы не можете заглушить этого пользователя')
