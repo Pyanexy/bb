@@ -12,7 +12,7 @@ usage: "",
 permission: [], 
 owner: false, 
 execute: async (message, args, client, prefix) => {
-    const user = message.guild.member(message.mentions.users.first());
+    const user = message.guild.members.cache.get(message.mentions.users.first());
 
     const role = message.guild.roles.cache.find((ro) => ro.name === "Muted");
     if (!role) {
