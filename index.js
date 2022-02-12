@@ -129,10 +129,8 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.deferUpdate()
 
             const settingsEmbed = new MessageEmbed()
-        .setTitle("Команды Редакции")
-        .setDescription(
-          "`prefix`"
-        )
+        .setTitle("Настройка")
+        .setDescription(`**Prefix** - \n**joinchannel** - \n**joinmessage** - \n**leavechannel** - Установите свой канал для прощаний\n**leavemessage** - Установите своё прощяние`)
         .setColor(client.embedColor);
 
       await msg.edit({ embeds: [settingsEmbed] });
@@ -166,7 +164,7 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.deferUpdate()
 
             const infoEmbed = new MessageEmbed()
-        .setTitle("Команды Полезность")
+        .setTitle("Команды Утилити")
         .setDescription(
           "`translate`, `avatar`, `calculator`"
         )
@@ -174,7 +172,17 @@ client.on('interactionCreate', async (interaction) => {
 
         await msg.edit({ embeds: [infoEmbed] })
 
-        }
+        } else if (interaction.values[0] === "fun") {
+               await interaction.deferUpdate()
+               
+               const funEmbed = new MessageEmbed()
+       .setTitle("Команды Фан")
+       .setDescription(`kiss, hug, slap, sleep, kill, cry`)
+       .setColor(client.embedColor);
+     await msg.edit({ embeds: [funEmbed] })
+  
+     }
+
  }
 })
 
