@@ -26,7 +26,7 @@ execute: async (message, args, client, prefix) => {
     if (!user) {
       return message.channel.send("Нужно указать пользователя");
     }
-    if (user.id === message.owner.id) {
+    if (user.id === message.guild.owner.id) {
       return message.channel.send(
         "Вы можете использовать любую команду мода против владельца сервера."
       );
