@@ -31,13 +31,13 @@ execute: async (message, args, client, prefix) => {
         "Вы можете использовать любую команду мода против владельца сервера."
       );
     }
-    const time = args[0];
+    const time = args[0]
     if (!time) {
       return message.channel.send(
         "Сколько вы собираетесь заглушать этого человека ()"
       );
     }
-    const reason = args.slice(1).join(" ");
+    const reason = args.slice(1).join(" ")
     if (!reason) {
       return message.channel.send(
         "По какой причине вы собираетесь tempmute?:"
