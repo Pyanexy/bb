@@ -17,10 +17,10 @@ execute: async (message, args, client, prefix) => {
     const role = message.guild.roles.cache.find((ro) => ro.name === "Muted");
     if (!role) {
       message.guild.roles.create({
-        data: {
+       
           name: "muted",
           color: "GRAY",
-        },
+ 
       });
     }
     if (!user) {
