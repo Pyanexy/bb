@@ -1,10 +1,15 @@
 const prefixModel = require("../../database/guildData/leavemessage");
 
 module.exports = {
-  name: "leavemessage",
-  description: "Change the leave message per server!",
-  userPerms: ["MANAGE_CHANNELS"],
-  run: async (client, message, args) => {
+    name: "setprefix",
+    category: "Config",
+    description: "Изменение префикса или сброс",
+    args: false,
+    usage: "",
+    aliases: ["prefix"],
+    permission: [],
+    owner: false,
+    async execute(message, args, client) {
     const text = args.join(" ");
     if (!args[0]) {
       return message.channel.send(`\`Usage: n!leavemessage <Text|off>\``);
