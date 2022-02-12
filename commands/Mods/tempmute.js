@@ -46,16 +46,17 @@ execute: async (message, args, client, prefix) => {
     const mtembde = new MessageEmbed()
       .setTitle("Действие: Tempmute")
       .setColor(client.embedColor)
-      .addField("Пользователь:", user)
-      .addField("Причина", reason)
-      .addField("Модератор:", message.member.displayName)
-      .addField("Время", time, true);
+      .addFields( 
+{ name: "Пользователь:", value: user },
+{ name: "Причина", value: reason },
+{ name: "Модератор:", value: message.member.displayName },
+{ name: "Время", value: time });
     const mtuembde = new MessageEmbed()
       .setTitle("ТЕБЯ ЗАГЛУШИЛИ!!")
       .setColor(client.embedColor)
-      .addField("Причина", reason)
-      .addField("Модератор:", message.member.displayName)
-      .addField("Время", time, true)
+      .addFields({ name: "Причина",value: reason },
+  { name: "Модератор:",value: message.member.displayName },
+      { name: "Время",value: time });
        user.send({ embeds: [mtuembde] });
     message.channel.send({ embeds: [mtembde] });
     user.roles.add(role);
