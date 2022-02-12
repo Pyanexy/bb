@@ -7,4 +7,4 @@ const welcomeSchema = new mongoose.Schema({
   GuildID: String
 });
 
-const MessageModel = module.exports = mongoose.model('welcomer',
+const MessageModel = module.exports = mongoose.model('welcomer', welcomeSchema);
