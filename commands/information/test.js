@@ -19,34 +19,41 @@ let helpMenu = new MessageActionRow()
       .setMaxValues(1)
       .addOptions([
         {
-          label: "Редакция",
-          description: "Редактируй как хочешь",
-          value: "settings",
-          emoji: "🛠"
+          label: "Основное",
+          description: "Самое главное в Nutella",
+          value: "general",
+          emoji: "🔎"
         },
         {
           label: "Информация",
-          description: "Ты проинформирован",
+          description: "Все команды информации",
           value: "info",
-          emoji: "📢"
+          emoji: "🔔"
         },
         {
-          label: "Музыка",
-          description: "Слушай музыку 24 на 7!",
-          value: "music",
-          emoji: "🎵"
+          label: "Настройки",
+          description: "Найстрой Nutell'у как хочешь",
+          value: "settings",
+          emoji: "⚙"
         },
         {
-         label: "Полезность",
-         description: "Может это тебе понадобится",
-         value: "utils",
-         emoji: "🔥"
+         label: "Музыка",
+         description: "Слушай музыку вместе с друзьями",
+         value: "music",
+         emoji: "🎶"
+        },
+        {
+         label: "Фан",
+         description: "Команды развлечения тут",
+         value: "fun",
+         emoji: "🎭"
         }
         ])
     )
 
     let editEmbed = new MessageEmbed()
     .setTitle('Меню помощи')
+    .setImage(message.guild.displayiconURL({dynamic: true, size: 1770, 663 }))
     .setDescription('Упс Nutella решила сделать селект!')
     .setColor(client.embedColor)
 
