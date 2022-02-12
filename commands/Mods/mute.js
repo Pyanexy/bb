@@ -28,10 +28,10 @@ execute: async (message, args, client, prefix, Discord) => {
             try {
                 message.channel.send('Нет приглушенной роли.. создаю ее..!')
                 let muterole = await message.guild.roles.create({
-                    data: {
+                 
                         name: 'Muted',
                         permissions: [],
-                    }
+                   
                 });
                 message.guild.channels.cache.filter(c => c.type === 'text').forEach(async (channel, id) => {
                     await channel.createOverwrite(muterole, {
