@@ -53,7 +53,9 @@ module.exports = {
             "VERIFIED_BOT": "Верифицырованый бот",
             "EARLY_VERIFIED_DEVELOPER": "Ранний проверенный разработчик ботов"
         };
-       let data = await b.findOne({ guildID: message.guild.id, userID: mention.user.id })
+       let data = await b.findOne({ 
+bio: String,
+guildID: message.guild.id, userID: mention.user.id })
         const userlol = new Discord.MessageEmbed()
         .setAuthor(`Информация о пользователе`, mention.user.avatarURL())
         .setThumbnail(usericon)
