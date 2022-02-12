@@ -130,7 +130,7 @@ client.on('interactionCreate', async (interaction) => {
 
             const settingsEmbed = new MessageEmbed()
         .setTitle("Настройка")
-        .setDescription(`**Prefix** - \n**joinchannel** - \n**joinmessage** - \n**leavechannel** - Установите свой канал для прощаний\n**leavemessage** - Установите своё прощяние`)
+        .setDescription(`**Prefix** - Префикс бота, редакция \n**joinchannel** - Установите канал приглошения\n**joinmessage** - Установите сообщение приветствия\n**leavechannel** - Установите канал для прощаний\n**leavemessage** - Установите сообщение прощяния`)
         .setColor(client.embedColor);
 
       await msg.edit({ embeds: [settingsEmbed] });
@@ -152,9 +152,7 @@ client.on('interactionCreate', async (interaction) => {
 
             const infoEmbed = new MessageEmbed()
         .setTitle("Команды Информации")
-        .setDescription(
-          "`about`, `botinfo`, `help`, `invite`, `ping`, `userinfo`, `serverinfo`"
-        )
+        .setDescription(`**about** - Информация о Nutella\n**status** - Статистика о Nutella\n**serverinfo** - Информация о сервере\n**userinfo** - Информация о пользователе\n**roleinfo** - Информация о роли`)
         .setColor(client.embedColor);
 
         await msg.edit({ embeds: [infoEmbed] })
@@ -165,9 +163,8 @@ client.on('interactionCreate', async (interaction) => {
 
             const infoEmbed = new MessageEmbed()
         .setTitle("Команды Утилити")
-        .setDescription(
-          "`translate`, `avatar`, `calculator`"
-        )
+        .setDescription(`**translate** - Перевести предложение\n**avatar** - Аватар пользователя\n**calculator** - Калькулятор на кнопках\n**invite** - Пригласить Nutella\n**ping** - Задержка Api`)
+      
         .setColor(client.embedColor);
 
         await msg.edit({ embeds: [infoEmbed] })
@@ -177,12 +174,21 @@ client.on('interactionCreate', async (interaction) => {
                
                const funEmbed = new MessageEmbed()
        .setTitle("Команды Фан")
-       .setDescription(`kiss, hug, slap, sleep, kill, cry`)
+       .setDescription(`**kiss** - Поцеловать пользователя\n**hug** - Обнять пользователя\n**slap** - Ударить пользователя\n**sleep** - Спать\n**kill** - Убить пользователя\n**cry** - Плакать`)
        .setColor(client.embedColor);
      await msg.edit({ embeds: [funEmbed] })
   
+     } else if (interaction.values[0] === "general") {
+               await interaction.deferUpdate()
+               
+               const fuEmbed = new MessageEmbed()
+       .setTitle("Команды Основное")
+       .setDescription(`**help** - Основная команда Nutella`)
+       .setColor(client.embedColor);
+     await msg.edit({ embeds: [fuEmbed] })
+  
      }
-
+    
  }
 })
 
