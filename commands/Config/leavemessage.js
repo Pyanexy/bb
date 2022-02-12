@@ -1,12 +1,12 @@
 const prefixModel = require("../../database/guildData/leavemessage");
 
 module.exports = {
-    name: "setprefix",
+    name: "leavemessage",
     category: "Config",
     description: "Изменение префикса или сброс",
     args: false,
     usage: "",
-    aliases: ["prefix"],
+    aliases: ["leavemsg"],
     permission: [],
     owner: false,
     async execute(message, args, client) {
