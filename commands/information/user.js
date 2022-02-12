@@ -1,7 +1,7 @@
 const Discord = module.require("discord.js");
 const moment = require("moment");
 moment.locale("ru");
-const bio = require("../../database/memberData/bio");
+const N = require("../../database/memberData/bio");
 
 
 module.exports = {
@@ -53,7 +53,7 @@ module.exports = {
             "VERIFIED_BOT": "Верифицырованый бот",
             "EARLY_VERIFIED_DEVELOPER": "Ранний проверенный разработчик ботов"
         };
-       let data = await bio.findOne({ guildID: message.guild.id, userID: member.user.id })
+       let data = await N.findOne({ guildID: message.guild.id, userID: mention.user.id })
         const userlol = new Discord.MessageEmbed()
         .setAuthor(`Информация о пользователе`, mention.user.avatarURL())
         .setThumbnail(usericon)
