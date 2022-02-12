@@ -60,7 +60,6 @@ execute: async (message, args, client, prefix) => {
     user.roles.add(role);
     setTimeout(function () {
       user.roles.remove(role);
-      user.send(`You are now unmuted! We hope you Follow the Rules next time`);
-    }, ms(time));
+       }, ms(time));
   },
 };
