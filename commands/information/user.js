@@ -1,7 +1,7 @@
 const Discord = module.require("discord.js");
 const moment = require("moment");
 moment.locale("ru");
-const bio = require("../database/memberData/bio");
+const bio = require("./database/memberData/bio");
 
 
 module.exports = {
