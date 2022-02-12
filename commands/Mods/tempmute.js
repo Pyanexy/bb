@@ -55,8 +55,7 @@ execute: async (message, args, client, prefix) => {
       .setColor("RANDOM")
       .addField("Reason", reason)
       .addField("Moderator:", message.member.displayName)
-      .addField("Time", time, true);
-    user.send({ embeds: [mtuembde] });
+      .addField("Time", time, true)
     message.channel.send({ embeds: [mtembde] });
     user.roles.add(role);
     setTimeout(function () {
