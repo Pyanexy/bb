@@ -12,56 +12,61 @@ usage: "",
 permission: [], 
 owner: false, 
 execute: async (message, args, client, prefix) => {
-    const user = message.mentions.members.first();
+    
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("У вас недостаточно прав для выполнения этой команды.");
+  let muteUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!muteUser) return message.channel.send("Не удалось найти пользователя | **Использование:** `${prefix}tempmute @user <время> <причина>`");
+  if(muteUser.hasPermission("ADMINISTRATOR")) return message.channel.send("У вас нет права `ADMINISTRATOR`");
+  let reason = args.slice(2).join(" ");
+  if(!reason) return message.channel.send("Укажите причину | **Использование:** `${prefix}tempmute @user <время> <причина>`");
 
-    const role = message.guild.roles.cache.find((ro) => ro.name === "Muted");
-    if (!role) {
-      message.guild.roles.create({
-       
-          name: "muted",
-          color: 0,
- 
+  let muterole = message.guild.roles.find(r => r.name === "Заглушен")
+  if(!muterole){
+    try{
+      muterole = await message.guild.roles.create({
+        name: "Заглушен",
+        color: "0",
+        permissions:[]
       });
+
+      message.guild.channels.forEach(async (channel, id) => {
+        await channel.overwritePermissions(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        });
+      });
+      
+    }catch(e){
+      console.log(e.stack);
     }
-    if (!user) {
-      return message.channel.send("Нужно указать пользователя");
-    }
-    if (user.id === message.guild.owner.id) {
-      return message.channel.send(
-        "Вы можете использовать любую команду мода против владельца сервера."
-      );
-    }
-    const time = args[0]
-    if (!time) {
-      return message.channel.send(
-        "Сколько вы собираетесь заглушать этого человека ()"
-      );
-    }
-    const reason = args.slice(1).join(" ")
-    if (!reason) {
-      return message.channel.send(
-        "По какой причине вы собираетесь tempmute?:"
-      );
-    }
-    const mtembde = new MessageEmbed()
-      .setTitle("Действие: Tempmute")
-      .setColor(client.embedColor)
-      .addFields( 
-{ name: "Пользователь:", value: user },
-{ name: "Причина", value: reason },
-{ name: "Модератор:", value: message.member.displayName },
-{ name: "Время", value: time });
-    const mtuembde = new MessageEmbed()
-      .setTitle("ТЕБЯ ЗАГЛУШИЛИ!!")
-      .setColor(client.embedColor)
-      .addFields({ name: "Причина",value: reason },
-  { name: "Модератор:",value: message.member.displayName },
-      { name: "Время",value: time });
-       user.send({ embeds: [mtuembde] });
-    message.channel.send({ embeds: [mtembde] });
-    user.roles.add(role);
-    setTimeout(function () {
-      user.roles.remove(role);
-       }, ms(time));
-  },
-};
+  }
+  let length = args[1];
+  if(!length) return message.channel.send("**Использование:** `${prefix}tempmute @user <время> <причина>`");
+  message.delete().catch();
+
+  let muteLogEmbed = new Discord.RichEmbed()
+  .setAuthor(`Заглушен | ${muteUser.user.tag}`, muteUser.user.displayAvatarURL)
+  .setDescription(`**Заглушен:** ${muteUser}\n \n**Админестратор:** ${message.author}\n \n**Причина:** ${reason}\n \n**Время:** ${length}`)
+  .setColor(client.embedColor)
+  .setTimestamp()
+  .setFooter(`ID: ${muteUser.id}`)
+
+  
+  
+  await(muteUser.addRole(muterole.id));
+
+  setTimeout(function(){
+    muteUser.removeRole(muterole.id);
+
+    let unmuteLogEmbed = new Discord.RichEmbed()
+    .setAuthor(`Разглушен | ${muteUser.user.tag} `, muteUser.user.displayAvatarURL)
+    .setDescription(`**Разглушен:** ${muteUser}\n \n**Админестратор:** ${bot.user}\n \n**Причина:** ${reason}`)
+    .setColor(client.embedColor)
+    .setTimestamp()
+    .setFooter(`ID: ${muteUser.id}`)
+
+
+  }, ms(length));
+
+   }
+}
