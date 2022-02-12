@@ -13,14 +13,14 @@ permission: [],
 owner: false, 
 execute: async (message, args, client, prefix) => {
     
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("У вас недостаточно прав для выполнения этой команды.");
-  let muteUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("У вас недостаточно прав для выполнения этой команды.");
+  let muteUser = message.mentions.users.first() || message.guild.members.get(args[0]);
   if(!muteUser) return message.channel.send("Не удалось найти пользователя | **Использование:** `${prefix}tempmute @user <время> <причина>`");
-  if(muteUser.hasPermission("ADMINISTRATOR")) return message.channel.send("У вас нет права `ADMINISTRATOR`");
+  if(muteUser.permissions.has("ADMINISTRATOR")) return message.channel.send("У вас нет права `ADMINISTRATOR`");
   let reason = args.slice(2).join(" ");
   if(!reason) return message.channel.send("Укажите причину | **Использование:** `${prefix}tempmute @user <время> <причина>`");
 
-  let muterole = message.guild.roles.find(r => r.name === "Заглушен")
+  let muterole = message.guild.roles.cache.find(r => r.name === "Заглушен")
   if(!muterole){
     try{
       muterole = await message.guild.roles.create({
