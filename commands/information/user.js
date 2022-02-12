@@ -58,7 +58,7 @@ module.exports = {
         .setAuthor(`Информация о пользователе`, mention.user.avatarURL())
         .setThumbnail(usericon)
         .setDescription(`${data.bio || data.prefix + `Вы можете добавить сюда какую-нибудь полезную информацию о себе командой ${prefix}bio`}`)
-        .addField(`Главная информация`, `Name: \`${mention.user.username}\` \nTag: \`${mention.user.discriminator}\` \nNickname: \`${nick}\``)
+        .addField(`Главная информация`, `Имя: \`${mention.user.username}\` \nТег: \`${mention.user.discriminator}\` \nНикнейм: \`${nick}\``)
         .addField(`Обзор`, `Значки: \`${flags[mention.user.flags.toArray().join(", ")]}\``)
         .addField(`Информация о сервере`, `Роли: <@&${mention._roles.join(">  <@&")}> \nКлючевые разрешения: \`${finalPermissions.join(', ')}\``)
         .addField(`Разная информация`, `Авторизирован: \n\`${moment(mention.user.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\` \nПресоиденился: \n\`${moment(mention.joinedAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\``)
