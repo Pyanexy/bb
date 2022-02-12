@@ -1,15 +1,16 @@
 const User = require("../../database/memberData/bio");
 const { MessageEmbed } = require("discord.js");
-module.exports = {
-name: "bio",
-aliases: [],
-description: "",
-category: "utils",
-agrs: false,
-permission: [],
-owner: false,
- execute: async (client, message, args, prefix) => {
 
+module.exports = { 
+name: "bio", 
+category: "utility", 
+aliases: [ ], 
+description: "See description about this project", 
+args: false, 
+usage: "", 
+permission: [], 
+owner: false, 
+ execute: async (message, args, client, prefix) => {
 let data = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
     if(!data) return bot.nodb();
 
