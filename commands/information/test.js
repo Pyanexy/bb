@@ -53,7 +53,7 @@ let helpMenu = new MessageActionRow()
 
     let editEmbed = new MessageEmbed()
     .setTitle('Меню помощи')
-    .setImage(message.guild.iconURL( { format: 'png', size: 512px x 512px } ) )
+    .setImage(https://preview.redd.it/4zh2hgl46cp51.png?width=3325&format=png&auto=webp&s=b9123bff12e1d5b86248d27a059104b4c92e05b5)
     .setDescription('Упс Nutella решила сделать селект!')
     .setColor(client.embedColor)
 
