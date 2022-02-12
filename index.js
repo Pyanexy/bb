@@ -130,7 +130,12 @@ client.on('interactionCreate', async (interaction) => {
 
             const settingsEmbed = new MessageEmbed()
         .setTitle("Настройка")
-        .setDescription(`**Prefix** - Префикс бота, редакция \n**joinchannel** - Установите канал приглошения\n**joinmessage** - Установите сообщение приветствия\n**leavechannel** - Установите канал для прощаний\n**leavemessage** - Установите сообщение прощяния`)
+        .addFields(
+{ name: "prefix", value: `Установите префикс для сервера` },
+{ name: "joinchannel", value: `Установите канал приветствия` },
+{ name: "joinmessage", value: `Установите сообщение приветствия` },
+{ name: "leavechannel", value: `Установите канал прощяния` },
+{ name: "leavemessage", value: `Установите сообщение прощяния` })
         .setColor(client.embedColor);
 
       await msg.edit({ embeds: [settingsEmbed] });
@@ -140,8 +145,26 @@ client.on('interactionCreate', async (interaction) => {
          await interaction.deferUpdate();
  
          const musicEmbed = new MessageEmbed()
-         .setTitle(`Команды Музыки`)
-         .setDescription("`clearqueue`, `autoplay`, `247`, `play`, `queue`, `skip`, `loop`, `nowplaying`, `leave`, `join`, `lyrics`, `filtera`, `shuffle`, `pause`, `resume`, `remove`, `seek`, `volume`")
+         .setTitle(`Модуль Музыка`)
+         .addFields(
+{ name: "play", value: `Включит музыку` },
+{ name: "skip", value: `Пропустит трек` },
+{ name: "stop", value: `Остановит очередь` },
+{ name: "loop", value: `Цыкал очереди` },
+{ name: "queue", value: `Информация о очереди` },
+{ name: "lyrics", value: `Информация о тексте` },
+{ name: "nowplaying", value: `Информация о проигрывымаем треке` },
+{ name: "pause", value: `Пауза` },
+{ name: "resume", value: `Продолжить` },
+{ name: "remove", value: `Удолит трек в очереди` },
+{ name: "autoplay", value: `Авто музыка` },
+{ name: "247", value: `24 на 7 в войс канале` },
+{ name: "filters", value: `Фильтры` },
+{ name: "shuffle", value: `Информация о фильтрах` },
+{ name: "seek", value: `Перемотать на нужный момент` },
+{ name: "join", value: `Присоединиться` },
+{ name: "clear-queue", value: `Удалить всю очередь` },
+{ name: "leave", value: `Покинуть` })
          .setColor(client.embedColor)
  
          await msg.edit({ embeds: [musicEmbed] })
@@ -151,8 +174,13 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.deferUpdate()
 
             const infoEmbed = new MessageEmbed()
-        .setTitle("Команды Информации")
-        .setDescription(`**about** - Информация о Nutella\n**status** - Статистика о Nutella\n**serverinfo** - Информация о сервере\n**userinfo** - Информация о пользователе\n**roleinfo** - Информация о роли`)
+        .setTitle("Модуль Информация")
+        .addFields(
+{ name: "about", value: `Информация о Nutella` },
+{ name: "stats", value: `Статистика Nutella` },
+{ name: "serverinfo", value: `Информация о сервере` },
+{ name: "userinfo", value: `Информация о пользователе ` },
+{ name: "roleinfo", value: `Информация о роле` })
         .setColor(client.embedColor);
 
         await msg.edit({ embeds: [infoEmbed] })
@@ -162,9 +190,14 @@ client.on('interactionCreate', async (interaction) => {
             await interaction.deferUpdate()
 
             const infoEmbed = new MessageEmbed()
-        .setTitle("Команды Утилити")
-        .setDescription(`**translate** - Перевести предложение\n**avatar** - Аватар пользователя\n**calculator** - Калькулятор на кнопках\n**invite** - Пригласить Nutella\n**ping** - Задержка Api`)
-      
+        .setTitle("Модуль Утилити")
+              .addFields(
+{ name: "translate", value: `Перевести предложение` },
+{ name: "avatar", value: `Аватар пользователя` },
+{ name: "calculator", value: `Калькулятор на кнопках` },
+{ name: "bio", value: `Назначить биографию` },
+{ name: "invite", value: `Пригласить Nutella` },
+{ name: "ping", value: `Статус Api` })
         .setColor(client.embedColor);
 
         await msg.edit({ embeds: [infoEmbed] })
@@ -173,8 +206,14 @@ client.on('interactionCreate', async (interaction) => {
                await interaction.deferUpdate()
                
                const funEmbed = new MessageEmbed()
-       .setTitle("Команды Фан")
-       .setDescription(`**kiss** - Поцеловать пользователя\n**hug** - Обнять пользователя\n**slap** - Ударить пользователя\n**sleep** - Спать\n**kill** - Убить пользователя\n**cry** - Плакать`)
+       .setTitle("Модуль Фан")
+       .addFields(
+{ name: "kiss", value: `Поцеловат пользователя` },
+{ name: "hug", value: `Обнять пользователя` },
+{ name: "slap", value: `Ударить пользователя` },
+{ name: "sleep", value: `Спать` },
+{ name: "kill", value: `Убить пользователя` },
+{ name: "cry", value: `Плакать` })
        .setColor(client.embedColor);
      await msg.edit({ embeds: [funEmbed] })
   
