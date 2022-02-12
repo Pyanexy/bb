@@ -12,7 +12,6 @@ permission: [],
 owner: false, 
  execute: async (message, args, client, prefix) => {
 let data = await b.findOne({ guildID: message.guild.id, userID: message.author.id });
-    if(!data) return client.nodb();
 
     let context = args.slice(0).join(` `)
     
