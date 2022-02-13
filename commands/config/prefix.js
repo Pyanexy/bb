@@ -36,11 +36,13 @@ if (args.join("") === default_prefix) {
 client.db.delete(`prefix_${message.guild.id}`); 
 const embed = new MessageEmbed() 
 .setDescription("Сброс префикса") 
-.setColor(client.embedColor) return await message.channel.send({ embeds: [embed] }); } 
+.setColor(client.embedColor) 
+return await message.channel.send({ embeds: [embed] }); } 
 
 client.db.set(`prefix_${message.guild.id}`, args[0]); 
 const embed = new MessageEmbed() 
 .setDescription(`Новый префикс на сервере: ${args[0]}`) 
-.setColor(client.embedColor) await message.channel.send({ embeds: [embed] });
+.setColor(client.embedColor) 
+await message.channel.send({ embeds: [embed] });
      },
 };
