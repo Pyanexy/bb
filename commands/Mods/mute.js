@@ -10,12 +10,12 @@ usage: "<string>",
 permission: [], 
 owner: false, 
 execute: async (message, args, client, prefix) => {
-        if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("You have insufficient permissions to execute this command.");
+        if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("У вас недостаточно прав для выполнения этой команды.");
   let muteUser = message.mentions.members.first();
-  if(!muteUser) return message.channel.send("Couldn't find user | **Usage:** `>mute @user <time> <reason>`");
-  if(muteUser.permissions.has("ADMINISTRATOR")) return message.reply("You can't ban an Administrator!");  
+  if(!muteUser) return message.channel.send("Не указан пользователь | **Использование:** `n!mute @user <время> <причина>`");
+  if(muteUser.permissions.has("ADMINISTRATOR")) return message.reply("Ты не можешь заглушить администратора!");  
   let reason = args.slice(2).join(" ");
-  if(!reason) return message.channel.send("Specify a reason | **Usage:** `>mute @user <time> <reason>`");
+  if(!reason) return message.channel.send("Укажите причину | **Использование:** `n!mute @user <время> <причина>`");
 
   let muterole = message.guild.roles.cache.find(r => r.name === "Заглушен")
   if(!muterole){
@@ -44,15 +44,15 @@ execute: async (message, args, client, prefix) => {
   message.delete().catch();
 
   let muteLogEmbed = new MessageEmbed()
-  .setAuthor(`Punishment | ${muteUser.user.tag} | Mute`, muteUser.user.displayAvatarURL)
-  .setDescription(`**Target:** ${muteUser}\n \n**Issued By:** ${message.author}\n \n**Issued Reason:** ${reason}\n \n**Issued Duration:** ${length}\n \n**Issued In:** ${message.channel}`)
-  .setColor("#e74c3c")
+  .setAuthor(`Заглушен | ${muteUser.user.tag} `, muteUser.user.displayAvatarURL)
+  .setDescription(`**Пользователь:** ${muteUser}\n \n**Модератор:** ${message.author}\n \n**Причина:** ${reason}\n \n**Время:** ${length}\n \n**Было в:** ${message.channel}`)
+  .setColor(client.embedColor)
   .setTimestamp()
   .setFooter(`ID: ${muteUser.id}`)
 
   
   message.channel.send({ embeds: [muteLogEmbed] }).then(() => {
-    muteUser.send(`You've been **muted** in **${message.guild.name}** for reason: **${reason}**, and duration: **${length}**`)
+    muteUser.send(`Вы были **заглушины** на **${message.guild.name}** по причине: **${reason}**, на это время: **${length}**`)
     })
   await(muteUser.roles.add(muterole.id));
 
@@ -60,14 +60,14 @@ execute: async (message, args, client, prefix) => {
     muteUser.roles.remove(muterole.id);
 
     let unmuteLogEmbed = new MessageEmbed()
-    .setAuthor(`Punishment | ${muteUser.user.tag} | Unmute`, muteUser.user.displayAvatarURL)
-    .setDescription(`**Target:** ${muteUser}\n \n**Removed By:** ${client.user}\n \n**Issued Reason:** Expired/False\n \n**Issued In:** Console`)
-    .setColor("#e74c3c")
+    .setAuthor(`Разглушен | ${muteUser.user.tag} `, muteUser.user.displayAvatarURL)
+    .setDescription(`**Пользователь:** ${muteUser}\n \n**Модератор:** ${client.user}\n \n**Причина:** ${reason}`)
+    .setColor(client.embedColor)
     .setTimestamp()
     .setFooter(`ID: ${muteUser.id}`)
 
     message.channel.send({ embeds: [unmuteLogEmbed] }).then(() => {
-      muteUser.send(`Your **mute** in **${message.guild.name}** has **expired**. You may now talk.`).catch(err => console.log(err))
+      muteUser.send(`Вы **разглушены** на **${message.guild.name}**`).catch(err => console.log(err))
   })
 ;
 
