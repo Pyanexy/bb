@@ -6,7 +6,7 @@ moment.locale("ru")
 
 module.exports = { 
 name: "github", 
-category: "utility", 
+category: "Utility", 
 aliases: [ "git" ], 
 description: "Информация о гид акаунте", 
 args: false, 
