@@ -14,7 +14,7 @@ if(!message.member.permissions.has("BAN_MEMBERS")) return message.reply("У ва
         if (!user) return message.reply(`Укажите, кого хотите забанить. **${prefix}ban <пользователь> [причина]**`);
         if(user.id === message.author.id) return message.reply("Вы не можете забанить себя.");
         const reason = args.slice(1).join(" ");
-        message.guild.members.cache.get(user.id).ban(reason);
+        message.guild.members.cache.get(user.id).ban({ reason: reason });
  
         const kickmessage = new MessageEmbed()
         .setColor(client.embedColor)
