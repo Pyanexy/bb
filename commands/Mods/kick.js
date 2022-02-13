@@ -19,6 +19,8 @@ if(!message.member.permissions.has("KICK_MEMBERS")) return message.reply("У в�
         const kickmessage = new MessageEmbed()
         .setColor(client.embedColor)
         .setDescription(`${user} был выгнан.\nПричина: **${reason != "Нету" ? reason : "Нету"}**\nМодератор: ${message.member.displayName}(${message.author.tag})`);
-        message.channel.send({ embeds: [kickmessage] });
+        if(client.db.get(`channel_${message.guild.id}`) == "null") {
+    message.channel.get(client.db.get(`channel_${message.guild.id}`)).send({ embeds: [kickmessage] })
+} else { message.channel.send({ embeds: [kickmessage] })}
    }
 }
