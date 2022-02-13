@@ -19,6 +19,10 @@ if(!message.member.permissions.has("BAN_MEMBERS")) return message.reply("У ва
         const kickmessage = new MessageEmbed()
         .setColor(client.embedColor)
         .setDescription(`${user} был забанен.\nПричина: **${reason != "Нету" ? reason : "Нету"}**\nМодератор: ${message.member.displayName}(${message.author.tag})`);
-        message.channel.send({ embeds: [kickmessage] });
+        
+      if(client.db.get(`channel_${message.guild.id}`) == "null") {
+    message.channel.get(client.db.get(`channel_${message.guild.id}`)).send({ embeds: [kickmessage] })
+} else { message.channel.send({ embeds: [kickmessage] })}
+
    }
 }
