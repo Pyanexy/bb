@@ -21,3 +21,5 @@ if(!message.member.permissions.has("BAN_MEMBERS")) return message.reply("У ва
         .setColor(client.embedColor)
         .setDescription(`${user} был забанен\nПричина: **${reason != "нету" ? reason : "нету"}**\nМодератор: ${message.author.displayName}(${message.author.tag})`);
         message.channel.send({ embeds: [banmessage] });
+   }
+}
