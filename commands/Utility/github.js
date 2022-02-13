@@ -8,7 +8,7 @@ module.exports = {
 name: "github", 
 category: "utility", 
 aliases: [ "git" ], 
-description: "See description about this project", 
+description: "Информация о гид акаунте", 
 args: false, 
 usage: "", 
 permission: [], 
