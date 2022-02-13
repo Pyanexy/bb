@@ -1,6 +1,5 @@
 const discord = require("discord.js");
-const { Random } = require("something-random-on-discord");
-const random = new Random();
+const random = require("something-random-on-discord");
 
 module.exports = { name: "kiss", category: "Fun", description: "Изменение префикса или сброс", args: false, usage: "", aliases: ["prefix"], permission: [], owner: false, 
 async execute(message, args, client) {
