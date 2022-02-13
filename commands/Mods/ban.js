@@ -11,14 +11,14 @@ module.exports = {
     execute: async (message, args, client, prefix) => {
 if(!message.member.permissions.has("BAN_MEMBERS")) return message.reply("У вас нет разрешения на это.");
         const user = message.mentions.users.first();
-        if (!user) return message.reply(`Укажите, кого хотите выгнать. **${prefix}kick <пользователь> [причина]**`);
-        if(user.id === message.author.id) return message.reply("Вы не можете выгнать себя.");
+        if (!user) return message.reply(`Укажите, кого хотите забанить. **${prefix}ban <пользователь> [причина]**`);
+        if(user.id === message.author.id) return message.reply("Вы не можете забанить себя.");
         const reason = args.slice(1).join(" ");
-        message.guild.members.cache.get(user.id).kick(reason);
+        message.guild.members.cache.get(user.id).ban(reason);
  
         const kickmessage = new MessageEmbed()
         .setColor(client.embedColor)
-        .setDescription(`${user} был выгнан.\nПричина: **${reason != "Нету" ? reason : "Нету"}**\nМодератор: ${message.author.displayName}(${message.author.tag})`);
+        .setDescription(`${user} был забанен.\nПричина: **${reason != "Нету" ? reason : "Нету"}**\nМодератор: ${message.author.displayName}(${message.author.tag})`);
         message.channel.send({ embeds: [kickmessage] });
    }
 }
