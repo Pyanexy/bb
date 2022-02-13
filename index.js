@@ -221,8 +221,8 @@ client.on('interactionCreate', async (interaction) => {
                await interaction.deferUpdate()
                
                const fuEmbed = new MessageEmbed()
-       .setTitle("Команды Основное")
-       .setDescription(`**help** - Основная команда Nutella`)
+       .setTitle("Модуль Основное")
+       .addField("help", `Основная команда Nutella`)
        .setColor(client.embedColor);
      await msg.edit({ embeds: [fuEmbed] })
   
