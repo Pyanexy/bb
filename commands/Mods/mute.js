@@ -11,7 +11,7 @@ permission: [],
 owner: false, 
 execute: async (message, args, client, prefix) => {
         if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("You have insufficient permissions to execute this command.");
-  let muteUser = message.mentions.users.first() || message.guild.members.get(args[0]);
+  let muteUser = message.mentions.users.first();
   if(!muteUser) return message.channel.send("Couldn't find user | **Usage:** `>mute @user <time> <reason>`");
   if(muteUser.permissions.has("ADMINISTRATOR")) return message.channel.send(":clown: You tried. :clown:");
   let reason = args.slice(2).join(" ");
