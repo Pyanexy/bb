@@ -10,10 +10,10 @@ usage: "",
 permission: [], 
 owner: false, 
  execute: async (message, args, client, prefix, data) => {
-   let data = data.user.bio
+  
     let context = args.slice(0).join(` `)
     
-    if(!context){ data..user.bio = `\`\`\`<prefix>bio [Текст]\`\`\``; data.save(); message.react("🎉"); return; }
+    if(!context){ data.user.bio = `\`\`\`<prefix>bio [Текст]\`\`\``; data.save(); message.react("🎉"); return; }
 
     if(context.length >= 200) return message.reply(`К сожелению я не могу поставить вам такое описание. Оно имеет ${context.length}длинну.`)
 
