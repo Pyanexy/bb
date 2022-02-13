@@ -29,7 +29,7 @@ client.commands = new Collection();
 client.categories = readdirSync("./commands/");
 client.logger = require("./utils/logger.js");
 client.emoji = require("./utils/emoji.json");
-
+client.bd = require("./Database/Mongoose.js");
 
 client.manager = new Manager({
     nodes: client.config.nodes,
