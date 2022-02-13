@@ -18,7 +18,7 @@ if(!message.member.permissions.has("KICK_MEMBERS")) return message.reply("У в�
  
         const kickmessage = new MessageEmbed()
         .setColor(client.embedColor)
-        .setDescription(`${user} был ввгнан.\nПричина: **${reason != "Нету" ? reason : "Нету"}**\nМодератор: ${message.author.displayName}(${message.author.tag})`);
+        .setDescription(`${user} был выгнан.\nПричина: **${reason != "Нету" ? reason : "Нету"}**\nМодератор: ${message.author.displayName}(${message.author.tag})`);
         message.channel.send({ embeds: [kickmessage] });
    }
 }
