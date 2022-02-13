@@ -3,9 +3,9 @@ const translate = require('@iamtraction/google-translate');
 
 module.exports = { 
 name: "translate", 
-category: "utility", 
+category: "Utility", 
 aliases: [ "t" ], 
-description: "See description about this project", 
+description: "Переводчик в Discord боте!", 
 args: false, 
 usage: "", 
 permission: [], 
