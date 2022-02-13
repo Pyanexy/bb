@@ -4,9 +4,9 @@ module.exports = {
 	name: "resume",
     aliases: ["r"],
     category: "Music",
-    description: "Resume currently playing music",
+    description: "Возобновить воспроизведение музыки в данный момент",
     args: false,
-    usage: "<Number of song in queue>",
+    usage: "<Номер песни в очереди>",
     permission: [],
     owner: false,
     player: true,
@@ -19,7 +19,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new MessageEmbed()
                 .setColor("RED")
-                .setDescription("There is no music playing.");
+                .setDescription("Музыка не играет.");
             return message.channel.send({embeds: [thing]});
         }
 
@@ -28,7 +28,7 @@ module.exports = {
         if (!player.paused) {
             let thing = new MessageEmbed()
                 .setColor("RED")
-                .setDescription(`${emojiresume} The player is already **resumed**.`)
+                .setDescription(`${emojiresume} **Возоблено**.`)
                 .setTimestamp()
           return message.channel.send({embeds: [thing]});
         }
@@ -36,7 +36,7 @@ module.exports = {
         player.pause(false);
 
         let thing = new MessageEmbed()
-            .setDescription(`${emojiresume} **Resumed**\n[${song.title}](${song.uri})`)
+            .setDescription(`${emojiresume} **Возоблено**\n[${song.title}](${song.uri})`)
             .setColor(message.client.embedColor)
             .setTimestamp()
         return message.channel.send({embeds: [thing]});
