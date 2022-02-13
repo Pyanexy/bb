@@ -1,25 +1,24 @@
 const { MessageEmbed } = require("discord.js");
 
-  module.exports = {
-   name: "ban",
-   aliases: [],
-   description: "Заблокировать пользователя на сервере",
-   category: "Mods",
-   used: "",
-   agrs: false,
-   permission: [],
-   owner: false,
-   execute: async (client, message, args, prefix) => {
+module.exports = {
+    name: "ban",
+    category: "Mods",
+    description: "Команда кик",
+    args: false,
+    usage: "",
+    permission: [],
+    owner: false,
+    execute: async (message, args, client, prefix) => {
 if(!message.member.permissions.has("BAN_MEMBERS")) return message.reply("У вас нет разрешения на это.");
         const user = message.mentions.users.first();
-        if (!user) return message.reply(`Укажите, кого вы хотите забанить. **${prefix}ban <пользователь> [причина]**`);
-        if(user.id === message.author.id) return message.reply("Вы не можете забанить себя.");
+        if (!user) return message.reply(`Укажите, кого хотите выгнать. **${prefix}kick <пользователь> [причина]**`);
+        if(user.id === message.author.id) return message.reply("Вы не можете выгнать себя.");
         const reason = args.slice(1).join(" ");
-        message.guild.members.cache.get(user.id).ban(reason);
+        message.guild.members.cache.get(user.id).kick(reason);
  
-        const banmessage = new MessageEmbed()
+        const kickmessage = new MessageEmbed()
         .setColor(client.embedColor)
-        .setDescription(`${user} был забанен\nПричина: **${reason != "нету" ? reason : "нету"}**\nМодератор: ${message.author.displayName}(${message.author.tag})`);
-        message.channel.send({ embeds: [banmessage] });
+        .setDescription(`${user} был выгнан.\nПричина: **${reason != "Нету" ? reason : "Нету"}**\nМодератор: ${message.author.displayName}(${message.author.tag})`);
+        message.channel.send({ embeds: [kickmessage] });
    }
 }
