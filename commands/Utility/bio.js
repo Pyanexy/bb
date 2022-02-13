@@ -26,7 +26,7 @@ module.exports = {
       return message.channel.send({ embeds: [embed] });
     }
     
-    client.db.set(`bio_${message.author.id}, agrs[0]) 
+    client.db.set(`bio_${message.author.id}`, agrs[0]) 
    const embed = new MessageEmbed()
    .setDescription(`Ура, вы установили свою биографию, посмотреть можно здесь \`${prefix}userinfo\``)
    .setColor(client.embedColor)
