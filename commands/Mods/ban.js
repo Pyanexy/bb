@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "ban",
     category: "Mods",
-    description: "Команда кик",
+    description: "Команда Бан",
     args: false,
     usage: "",
     permission: [],
@@ -18,7 +18,7 @@ if(!message.member.permissions.has("BAN_MEMBERS")) return message.reply("У ва
  
         const kickmessage = new MessageEmbed()
         .setColor(client.embedColor)
-        .setDescription(`${user} был забанен.\nПричина: **${reason != "Нету" ? reason : "Нету"}**\nМодератор: ${message.author.displayName}(${message.author.tag})`);
+        .setDescription(`${user} был забанен.\nПричина: **${reason != "Нету" ? reason : "Нету"}**\nМодератор: ${message.member.displayName}(${message.author.tag})`);
         message.channel.send({ embeds: [kickmessage] });
    }
 }
