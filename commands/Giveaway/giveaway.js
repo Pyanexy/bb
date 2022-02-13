@@ -4,19 +4,19 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
     name : 'giveaway',
     run : async(client, message, args) => {
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('You dont have manage messages permission.')
+        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('У вас недостаточно прав!')
         
         const channel = message.mentions.channels.first()
-        if(!channel) return message.channel.send('Please specify a channel')
+        if(!channel) return message.channel.send('Укажите канал')
 
         const duration = args[1]
-        if(!duration) return message.channel.send('please enter a valid duration')
+        if(!duration) return message.channel.send('Введите допустимую продолжительность')
 
         const winners = args[2]
-        if(!winners) return message.channel.send('Please specify an amount of winners')
+        if(!winners) return message.channel.send('Укажите количество победителей')
 
         const prize = args.slice(3).join(" ")
-        if(!prize) return message.channel.send('Please sepcify a prize to win')
+        if(!prize) return message.channel.send('Пожалуйста, укажите приз, чтобы выиграть')
 
         client.giveaways.start(channel, {
             time : ms(duration),
@@ -24,26 +24,26 @@ module.exports = {
             winnerCount: winners,
             hostedBy: client.config.hostedBy ? message.author : null,
             messages: {
-                giveaway: (client.config.everyoneMention ? "@everyone\n\n" : '') + "Giveaway",
-                giveawayEnd: (client.config.everyoneMention ? "@everyone\n\n" : '') + "Giveaway Ended",
-                timeRemaining: "Time Remaining **{duration}**",
-                inviteToParticipate: "React with 🎉 to join the giveaway",
-                winMessage: "Congrats {winners}, you have  won the giveaway",
+                giveaway: (client.config.everyoneMention ? "@everyone\n\n" : '') + "Раздача",
+                giveawayEnd: (client.config.everyoneMention ? "@everyone\n\n" : '') + "Раздача закончилась",
+                timeRemaining: "Время раздачи **{duration}**",
+                inviteToParticipate: "Нажмите на 🎉 чтобы участвовать в раздаче",
+                winMessage: "Поздравляем {winners}, вы выиграли розыгрыш",
                 embedFooter: "Giveaway Time!",
-                noWinner: "Could not determine a winner",
-                hostedBy: 'Hosted by {user}',
-                winners: "winners",
-                endedAt: 'Ends at',
+                noWinner: "Не удалось определить победителя",
+                hostedBy: 'Раздачу начал {user}',
+                winners: "Победители",
+                endedAt: 'Заканчивается в',
                 units: {
-                    seconds: "seconds",
-                    minutes: "minutes",
-                    hours: 'hours',
-                    days: 'days',
+                    seconds: "секунд",
+                    minutes: "минут",
+                    hours: 'часов',
+                    days: 'дней',
                     pluralS: false
                 }
             },
            
         })
-        message.channel.send(`Giveaway is starting in ${channel}`)
+        message.channel.send(`Раздача начинается здесь ${channel}`)
     }
 }
