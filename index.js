@@ -129,12 +129,7 @@ client.on('interactionCreate', async (interaction) => {
             const settingsEmbed = new MessageEmbed()
         .setTitle("Настройка")
         .addFields(
-{ name: "prefix", value: `Установите префикс для сервера` },
-{ name: "joinchannel", value: `Установите канал приветствия` },
-{ name: "joinmessage", value: `Установите сообщение приветствия` },
-{ name: "leavechannel", value: `Установите канал прощяния` },
-{ name: "leavemessage", value: `Установите сообщение прощяния` })
-        .setColor(client.embedColor);
+{ name: "prefix", value: `Установите префикс для сервера` })        .setColor(client.embedColor);
 
       await msg.edit({ embeds: [settingsEmbed] });
 
@@ -193,7 +188,6 @@ client.on('interactionCreate', async (interaction) => {
 { name: "translate", value: `Перевести предложение` },
 { name: "avatar", value: `Аватар пользователя` },
 { name: "calculator", value: `Калькулятор на кнопках` },
-{ name: "bio", value: `Назначить биографию` },
 { name: "invite", value: `Пригласить Nutella` },
 { name: "ping", value: `Статус Api` })
         .setColor(client.embedColor);
