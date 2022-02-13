@@ -18,9 +18,9 @@ async execute(message, args, client) {
         if (!duration) 
             return message.channel.send('Please provide a duration for the giveaway!\nThe abbreviations for units of time are: `d (days), h (hours), m (minutes), s (seconds)`');
         if (
-            !args[1].endsWith("d") &&
-            !args[1].endsWith("h") &&
-            !args[1].endsWith("m") &&
+            !args[1].endsWith("d") ||
+            !args[1].endsWith("h") ||
+            !args[1].endsWith("m") ||
             !args[1].endsWith("s") 
         )
             return message.channel.send('Please provide a duration for the giveaway!\nThe abbreviations for units of time are: `d (days), h (hours), m (minutes), s (seconds)`');
