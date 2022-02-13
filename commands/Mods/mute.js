@@ -50,10 +50,10 @@ execute: async (message, args, client, prefix) => {
   .setTimestamp()
   .setFooter(`ID: ${muteUser.id}`)
 
-  
-  message.channel.send({ embeds: [muteLogEmbed] }).then(() => {
-    muteUser.send(`Вы были **заглушины** на **${message.guild.name}** по причине: **${reason}**, на это время: **${length}**`)
-    })
+  if(client.db.get(`channel_${message.guild.id}`) == "null") {
+    message.channel.get(client.db.get(`channel_${message.guild.id}`)).send({ embeds: [muteLogEmbed] })
+} else { message.channel.send({ embeds: [muteLogEmbed] })}
+
   await(muteUser.roles.add(muterole.id));
 
   setTimeout(function(){
@@ -65,11 +65,10 @@ execute: async (message, args, client, prefix) => {
     .setColor(client.embedColor)
     .setTimestamp()
     .setFooter(`ID: ${muteUser.id}`)
-
-    message.channel.send({ embeds: [unmuteLogEmbed] }).then(() => {
-      muteUser.send(`Вы **разглушены** на **${message.guild.name}**`).catch(err => console.log(err))
-  })
-;
+   
+   if(client.db.get(`channel_${message.guild.id}`) == "null") {
+    message.channel.get(client.db.get(`channel_${message.guild.id}`)).send({ embeds: [unmuteLogEmbed] })
+} else { message.channel.send({ embeds: [unmuteLogEmbed] })}
 
   }, ms(length));
 }}
