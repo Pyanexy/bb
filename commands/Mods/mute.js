@@ -15,7 +15,7 @@ execute: async (message, args, client, prefix) => {
         if (!user) return message.reply("Please specify someone you want to mute. **!mute <user> [time] [reason]**");
         const target = message.guild.members.cache.get(user.id);
         const muterole = message.guild.roles.cache.find(r => r.name === "Заглушен") 
- try: {
+ try {
  if(!muterole) {
   message.guild.roles.create({
   name: "Заглушен",
