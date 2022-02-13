@@ -1,4 +1,3 @@
-const b = require("../../database/memberData/bio");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = { 
@@ -10,12 +9,11 @@ args: false,
 usage: "", 
 permission: [], 
 owner: false, 
- execute: async (message, args, client, prefix) => {
-let data = await b.findOne({ guildID: message.guild.id, userID: message.author.id });
-
+ execute: async (message, args, client, prefix, data) => {
+   let data = data.user.bio
     let context = args.slice(0).join(` `)
     
-    if(!context){ data.bio = `\`\`\`<prefix>bio [Текст]\`\`\``; data.save(); message.react("🎉"); return; }
+    if(!context){ data..user.bio = `\`\`\`<prefix>bio [Текст]\`\`\``; data.save(); message.react("🎉"); return; }
 
     if(context.length >= 200) return message.reply(`К сожелению я не могу поставить вам такое описание. Оно имеет ${context.length}длинну.`)
 
@@ -24,6 +22,6 @@ let data = await b.findOne({ guildID: message.guild.id, userID: message.author.i
     .setDescription(context)
     .setColor(client.embedColor)
     message.channel.send({ embeds: [a] })
-    data.bio = context; data.save();
+    data = context; data.save();
     }
 }
