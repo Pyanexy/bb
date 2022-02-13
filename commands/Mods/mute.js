@@ -52,9 +52,8 @@ execute: async (message, args, client, prefix) => {
 
   
   message.channel.send({ embeds: [muteLogEmbed] }).then(() => {
-    muteUser.send(`You've been **muted** in **${message.guild.name}** for reason: **${reason}**, and duration: **${length}**`).catch(err => console.log(err))
-    message.channel.send(`${muteUser} has been **muted** for **${length}**.`)
-})
+    muteUser.send(`You've been **muted** in **${message.guild.name}** for reason: **${reason}**, and duration: **${length}**`)
+    })
   await(muteUser.roles.add(muterole.id));
 
   setTimeout(function(){
