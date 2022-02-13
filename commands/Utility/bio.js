@@ -10,7 +10,7 @@ module.exports = {
     permission: [],
     owner: false,
     async execute(message, args, client, prefix) {
-      
+      let context = args.slice(0).join(` `)
        if (!args[0]) {
     const embed = new MessageEmbed()
         .setDescription(`${client.db.bio || `Вы можете установить что-то сюда используя ${prefix}bio ваш тек`}`)
@@ -19,14 +19,14 @@ module.exports = {
     }
 
 
-    if (args[0].length > 200) {
+    if (context.length > 200) {
        const embed = new MessageEmbed()
         .setDescription("Биография может достигать до 200 символов, не больше")
         .setColor(client.embedColor)
       return message.channel.send({ embeds: [embed] });
     }
     
-   if (args.join("-") === "") {
+   if (context.join("-") === "") {
       client.db.delete(`bio_${message.author.id}`);
       const embed = new MessageEmbed()
         .setDescription("Биография сброшена")
@@ -34,7 +34,7 @@ module.exports = {
       return await message.channel.send({ embeds: [embed] });
     }
 
-    client.db.set(`bio_${message.author.id}`, agrs[0]) 
+    client.db.set(`bio_${message.author.id}`, context[0]) 
    const embed = new MessageEmbed()
    .setDescription(`Ура, вы установили свою биографию, посмотреть можно здесь \`${prefix}userinfo\``)
    .setColor(client.embedColor)
