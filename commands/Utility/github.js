@@ -36,7 +36,7 @@ execute: async (message, args, client, prefix) => {
             .addField(`Подписок`, `${following}`, true)
             .addField(`Место расположения`, `${location || "Нету"}`)
             .addField(`Авторизирован `, moment(created_at).format("dddd, MMMM, Do YYYY"))
-            .setFooter(`Tysm For Using Me! ${message.author.username}`)
+            .setFooter(`Искал он ${message.author.username}`)
 
             message.channel.send({ embeds: [embed] })
 
