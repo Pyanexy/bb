@@ -13,7 +13,7 @@ if(!message.member.permissions.has("ADMINISTRATOR")) return message.reply(`У в
 const channel = message.mentions.channels.first();
 if(!channel) return message.reply(`${client.db.get(`channel_${message.guild.id}`) || `На сервере не указан канал для мод логов`}`)
 
-client.db.set(`channel_${message.guild.id}`, channal.id)
+client.db.set(`channel_${message.guild.id}`, channal )
 message.channel.send(`Канал установлен: ${channel}\nИндификатор канала: ${channel.id}`) 
   }
 }
