@@ -4,7 +4,7 @@ module.exports = {
     name: "help",
     category: "Information",
     aliases: [ "h", "pls" ],
-    description: "",
+    description: "Основная команда",
     args: false,
     usage: "",
     permission: [],
@@ -14,7 +14,7 @@ let helpMenu = new MessageActionRow()
     .addComponents(
       new MessageSelectMenu()
       .setCustomId("help_menu")
-      .setPlaceholder('Меню помощи')
+      .setPlaceholder('Молули')
       .setMinValues(1)
       .setMaxValues(1)
       .addOptions([
@@ -47,6 +47,12 @@ let helpMenu = new MessageActionRow()
          description: "Команды развлечения тут",
          value: "fun",
          emoji: "🎭"
+        },
+        {
+         label: "Утилити",
+         description: "Команды доступны для всех",
+         value: "utils",
+         emoji: "👥"
         }
         ])
     )
