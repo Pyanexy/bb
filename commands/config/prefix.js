@@ -17,20 +17,20 @@ if (!message.member.permissions.has('MANAGE_GUILD')) return message.channel.send
 if (!args[0]) { 
 const embed = new MessageEmbed() 
 .setDescription("Вы не указали значения нового префикса") 
-.setColor(client.embedColor) return 
-message.channel.send({ embeds: [embed] }); } 
+.setColor(client.embedColor) 
+return message.channel.send({ embeds: [embed] }); } 
 
 if (args[1]) { 
 const embed = new MessageEmbed() 
 .setDescription("Вы не указали аргумент") 
-.setColor(client.embedColor) return 
-message.channel.send({ embeds: [embed] }); } 
+.setColor(client.embedColor) 
+return message.channel.send({ embeds: [embed] }); } 
 
 if (args[0].length > 3) { 
 const embed = new MessageEmbed() 
 .setDescription("Значение префикса не может привышать 3 символов") 
-.setColor(client.embedColor) return 
-message.channel.send({ embeds: [embed] }); } 
+.setColor(client.embedColor) 
+return message.channel.send({ embeds: [embed] }); } 
 
 if (args.join("") === default_prefix) { 
 client.db.delete(`prefix_${message.guild.id}`); 
