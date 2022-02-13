@@ -14,7 +14,7 @@ execute: async (message, args, client, prefix) => {
   let muteUser = message.mentions.members.first();
   if(!muteUser) return message.channel.send("Couldn't find user | **Usage:** `>mute @user <time> <reason>`");
   if(muteUser.permissions.has("ADMINISTRATOR")) return message.reply("You can't ban an Administrator!");  
-  let reason = args.slice(2).join(" ");
+  let reason = args.slice(3).join(" ");
   if(!reason) return message.channel.send("Specify a reason | **Usage:** `>mute @user <time> <reason>`");
 
   let muterole = message.guild.roles.cache.find(r => r.name === "Заглушен")
@@ -38,7 +38,8 @@ execute: async (message, args, client, prefix) => {
     }
   }
   let length = args[1];
-  if(isNaN(length)) return message.reply(`Буквы не цифры`);
+  let time = ms(length);
+  if(isNaN(time)) return message.reply(`Буквы не цифры`);
   if(!length) return message.channel.send(`**Использование:** \`${prefix}mute @user <время> <причина>\``);
   message.delete().catch();
 
