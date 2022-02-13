@@ -1,10 +1,17 @@
 const ms = require('ms')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = {
-    name : 'giveaway',
-    run : async(client, message, args) => {
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('У вас недостаточно прав!')
+module.exports = { 
+name: "giveaway", 
+category: "Giveaway", 
+description: "Начать Раздачу", 
+args: false, 
+usage: "", 
+aliases: [], 
+permission: [], 
+owner: false, 
+async execute(message, args, client) {
+        if(!message.member.permissions.has('MANAGE_MESSAGES')) return message.channel.send('У вас недостаточно прав!')
         
         const channel = message.mentions.channels.first()
         if(!channel) return message.channel.send('Укажите канал')
