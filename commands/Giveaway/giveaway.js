@@ -17,11 +17,7 @@ async execute(message, args, client) {
 
         if (!duration) 
             return message.channel.send('Please provide a duration for the giveaway!\nThe abbreviations for units of time are: `d (days), h (hours), m (minutes), s (seconds)`');
-        if (
-            !args[1].endsWith("d", "h", "m", "s") 
-        )
-            return message.channel.send('Please provide a duration for the giveaway!\nThe abbreviations for units of time are: `d (days), h (hours), m (minutes), s (seconds)`');
-
+        
         if (!winnerCount) return message.channel.send('Please provide the number of winners for the giveaway! E.g. `1w`')
 
         if (isNaN(args[2].toString().slice(0, -1)) || !args[2].endsWith("w")) // if args[2]/winnerCount is not a number (even after removing end 'w') or args[2] does not end with 'w', condition returns:
