@@ -5,7 +5,7 @@ module.exports = {
 name: "serverinfo", 
 category: "Information", 
 aliases: [ "server" ], 
-description: "See description about this project", 
+description: "Информация о сервере", 
 args: false, 
 usage: "", 
 permission: [], 
