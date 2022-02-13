@@ -11,9 +11,9 @@ module.exports = {
  //mod channel 
 if(!message.member.permissions.has("ADMINISTRATOR")) return message.reply(`У вас недостаточно прав для выполнения этой команды.`);
 const channel = message.mentions.channels.first();
-if(!channel) return message.reply(`Вы не указали канал для мод логов.`)
+if(!channel) return message.reply(`${client.db.get(`channel_${message.guild.id}`) || `На сервере не указан канал для мод логов`}`)
 
-client.db.set(`channel_${channel}`)
-message.channel.send(`Канал установлен: ${channel}`) 
+client.db.set(`channel_${message.guild.id}`, channal.id)
+message.channel.send(`Канал установлен: ${channel}\nИндификатор канала: ${channel.id}`) 
   }
 }
