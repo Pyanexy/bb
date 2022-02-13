@@ -30,8 +30,6 @@ client.categories = readdirSync("./commands/");
 client.logger = require("./utils/logger.js");
 client.emoji = require("./utils/emoji.json");
 client.Database = require('./Database/Mongoose.js');
-client.tools = require('./Tools/Tools.js');
-client.embed = require('./Tools/Embed.js');
 
 
 client.manager = new Manager({
