@@ -17,7 +17,7 @@ execute: async (message, args, client, prefix) => {
   let reason = args.slice(2).join(" ");
   if(!reason) return message.channel.send("Specify a reason | **Usage:** `>mute @user <time> <reason>`");
 
-  let muterole = message.guild.roles.find(r => r.name === "Заглушен")
+  let muterole = message.guild.roles.cache.find(r => r.name === "Заглушен")
   if(!muterole){
     try{
       muterole = await message.guild.roles.create({
