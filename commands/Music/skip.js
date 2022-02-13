@@ -4,7 +4,7 @@ module.exports = {
 	name: "skip",
 	aliases: ["s"],
 	category: "Music",
-	description: "Skip the currently playing song",
+	description: "Пропустить текущую воспроизводимую песню",
 	args: false,
     usage: "",
     permission: [],
@@ -19,7 +19,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new MessageEmbed()
                 .setColor("RED")
-                .setDescription("There is no music playing.");
+                .setDescription("Музыка не играет. ");
             return message.channel.send({embeds: [thing]});
         }
 
@@ -37,7 +37,7 @@ module.exports = {
 		const emojiskip = message.client.emoji.skip;
 
 		let thing = new MessageEmbed()
-			.setDescription(`${emojiskip} **Skipped**\n[${song.title}](${song.uri})`)
+			.setDescription(`${emojiskip} **Пропущено**\n[${song.title}](${song.uri})`)
 			.setColor(message.client.embedColor)
 			.setTimestamp()
 		return message.channel.send({embeds: [thing]});
