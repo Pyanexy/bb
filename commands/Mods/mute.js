@@ -38,6 +38,7 @@ execute: async (message, args, client, prefix) => {
     }
   }
   let length = args[1];
+  if(isNaN(length)) return message.reply(`Буквы не цифры`);
   if(!length) return message.channel.send(`**Использование:** \`${prefix}mute @user <время> <причина>\``);
   message.delete().catch();
 
@@ -49,14 +50,14 @@ execute: async (message, args, client, prefix) => {
   .setFooter(`ID: ${muteUser.id}`)
 
   
-  
+  message.channel.send({ embeds: [muteLogEmbed] }).then(() => {
     muteUser.send(`You've been **muted** in **${message.guild.name}** for reason: **${reason}**, and duration: **${length}**`).catch(err => console.log(err))
     message.channel.send(`${muteUser} has been **muted** for **${length}**.`)
-
-  await(muteUser.addRole(muterole.id));
+})
+  await(muteUser.roles.add(muterole.id));
 
   setTimeout(function(){
-    muteUser.removeRole(muterole.id);
+    muteUser.roles.remove(muterole.id);
 
     let unmuteLogEmbed = new MessageEmbed()
     .setAuthor(`Punishment | ${muteUser.user.tag} | Unmute`, muteUser.user.displayAvatarURL)
@@ -65,7 +66,7 @@ execute: async (message, args, client, prefix) => {
     .setTimestamp()
     .setFooter(`ID: ${muteUser.id}`)
 
-    message.channel.send(unmuteLogEmbed).then(() => {
+    message.channel.send({ embeds: [unmuteLogEmbed] }).then(() => {
       muteUser.send(`Your **mute** in **${message.guild.name}** has **expired**. You may now talk.`).catch(err => console.log(err))
   })
 ;
