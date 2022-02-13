@@ -22,6 +22,6 @@ owner: false,
     .setDescription(context)
     .setColor(client.embedColor)
     message.channel.send({ embeds: [a] })
-    data = context; data.save();
+    data = context; data.user.save();
     }
 }
