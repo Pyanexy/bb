@@ -5,7 +5,7 @@ module.exports = {
     name: "queue",
     category: "Music",
     aliases: ["q"],
-    description: "Show the music queue and now playing.",
+    description: "Показать очередь музыки и сейчас играет.",
     args: false,
     usage: "",
     permission: [],
@@ -20,7 +20,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new MessageEmbed()
                 .setColor("RED")
-                .setDescription("There is no music playing.");
+                .setDescription("Музыка не играет.");
             return message.channel.send({embeds: [thing]});
         }
 
@@ -39,14 +39,14 @@ module.exports = {
 
         const tracks = queue.slice(start, end);
 
-        if (queue.current) embed.addField("Now Playing", `[${queue.current.title}](${queue.current.uri}) \`[${convertTime(queue.current.duration)}]\``);
+        if (queue.current) embed.addField("Сейчас играет", `[${queue.current.title}](${queue.current.uri}) \`[${convertTime(queue.current.duration)}]\``);
 
-        if (!tracks.length) embed.setDescription(`No tracks in ${page > 1 ? `page ${page}` : "the queue"}.`);
-        else embed.setDescription(`${emojiQueue} Queue List\n` + tracks.map((track, i) => `${start + (++i)} - [${track.title}](${track.uri}) \`[${convertTime(track.duration)}]\``).join("\n"));
+        if (!tracks.length) embed.setDescription(`${page > 1 ? `страница ${page}` : "очередь"}.`);
+        else embed.setDescription(`${emojiQueue} Лист очереди\n` + tracks.map((track, i) => `${start + (++i)} - [${track.title}](${track.uri}) \`[${convertTime(track.duration)}]\``).join("\n"));
 
         const maxPages = Math.ceil(queue.length / multiple);
 
-        embed.addField("\u200b", `Page ${page > maxPages ? maxPages : page} of ${maxPages}`);
+        embed.addField("\u200b", `страница ${page > maxPages ? maxPages : page} из ${maxPages}`);
 
         return message.channel.send({embeds: [embed]});
     }
