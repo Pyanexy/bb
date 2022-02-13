@@ -2,9 +2,9 @@ const discord = require("discord.js");
 
 module.exports = { 
 name: "avatar", 
-category: "utility", 
+category: "Utility", 
 aliases: [ "ava" ], 
-description: "See description about this project", 
+description: "Посмотреть аватарку пользователя", 
 args: false, 
 usage: "", 
 permission: [], 
