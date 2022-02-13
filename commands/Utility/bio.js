@@ -26,6 +26,14 @@ module.exports = {
       return message.channel.send({ embeds: [embed] });
     }
     
+   if (args.join("-") === "") {
+      client.db.delete(`bio_${message.author.id}`);
+      const embed = new MessageEmbed()
+        .setDescription("Биография сброшена")
+        .setColor(client.embedColor)
+      return await message.channel.send({ embeds: [embed] });
+    }
+
     client.db.set(`bio_${message.author.id}`, agrs[0]) 
    const embed = new MessageEmbed()
    .setDescription(`Ура, вы установили свою биографию, посмотреть можно здесь \`${prefix}userinfo\``)
