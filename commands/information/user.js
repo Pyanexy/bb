@@ -11,7 +11,7 @@ module.exports = {
     usage: "",
     permission: [],
     owner: false,
-    execute: async (message, args, client, prefix, data) => {
+    execute: async (message, args, client, prefix) => {
         const permissions = {
             "ADMINISTRATOR": "Админестратор",
             "MANAGE_GUILD": "Управлять сервером",
@@ -55,10 +55,9 @@ module.exports = {
         const userlol = new Discord.MessageEmbed()
         .setAuthor(`Информация о пользователе`, mention.user.avatarURL())
         .setThumbnail(usericon)
-        .setDescription(`${data.user.bio || prefix + `Вы можете добавить сюда какую-нибудь полезную информацию о себе командой ${prefix}bio`}`)
         .addField(`Главная информация`, `Имя: \`${mention.user.username}\` \nТег: \`${mention.user.discriminator}\` \nНикнейм: \`${nick}\``)
         .addField(`Обзор`, `Значки: \`${flags[mention.user.flags.toArray().join(", ")]}\``)
-        .addField(`Информация о сервере`, `Роли: <@&${mention._roles.join(">  <@&")}> \nКлючевые разрешения: \`${finalPermissions.join(', ')}\``)
+        .addField(`Информация о сервере`, `Роли: <@&${mention._roles.join(">  <@&") || `Нету` }> \nКлючевые разрешения: \`${finalPermissions.join(', ')}\``)
         .addField(`Разная информация`, `Авторизирован: \n\`${moment(mention.user.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\` \nПресоиденился: \n\`${moment(mention.joinedAt).format("dddd, MMMM Do YYYY, h:mm:ss A")}\``)
         .setThumbnail(mention.user.avatarURL())
         .setFooter(`ID: ${mention.user.id}`, mention.user.avatarURL())
