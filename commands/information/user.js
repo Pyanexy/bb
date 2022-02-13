@@ -1,8 +1,6 @@
 const Discord = module.require("discord.js");
 const moment = require("moment");
 moment.locale("ru");
-const b = require("../../database/memberData/bio");
-
 
 module.exports = {
     name: "userinfo",
@@ -13,7 +11,7 @@ module.exports = {
     usage: "",
     permission: [],
     owner: false,
-    execute: async (message, args, client, prefix) => {
+    execute: async (message, args, client, prefix, data) => {
         const permissions = {
             "ADMINISTRATOR": "Админестратор",
             "MANAGE_GUILD": "Управлять сервером",
@@ -53,14 +51,11 @@ module.exports = {
             "VERIFIED_BOT": "Верифицырованый бот",
             "EARLY_VERIFIED_DEVELOPER": "Ранний проверенный разработчик ботов"
         };
-       let data = await b.findOne({ 
-guildID: message.guild.id, userID: mention.user.id })
-let bios = await data.findOnbe({ bio: { type: String }});
 
         const userlol = new Discord.MessageEmbed()
         .setAuthor(`Информация о пользователе`, mention.user.avatarURL())
         .setThumbnail(usericon)
-        .setDescription(`${bios || prefix + `Вы можете добавить сюда какую-нибудь полезную информацию о себе командой ${prefix}bio`}`)
+        .setDescription(`${data.user.bio || prefix + `Вы можете добавить сюда какую-нибудь полезную информацию о себе командой ${prefix}bio`}`)
         .addField(`Главная информация`, `Имя: \`${mention.user.username}\` \nТег: \`${mention.user.discriminator}\` \nНикнейм: \`${nick}\``)
         .addField(`Обзор`, `Значки: \`${flags[mention.user.flags.toArray().join(", ")]}\``)
         .addField(`Информация о сервере`, `Роли: <@&${mention._roles.join(">  <@&")}> \nКлючевые разрешения: \`${finalPermissions.join(', ')}\``)
