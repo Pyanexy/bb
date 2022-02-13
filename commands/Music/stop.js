@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
 	name: "stop",
     category: "Music",
-    description: "Stops the music",
+    description: "Останавливает музыку",
     args: false,
     usage: "",
     permission: [],
@@ -18,7 +18,7 @@ module.exports = {
         if (!player.queue.current) {
             let thing = new MessageEmbed()
                 .setColor("RED")
-                .setDescription("There is no music playing.");
+                .setDescription("Музыка не играет.");
             return message.channel.send({embeds: [thing]});
         }
 
@@ -35,7 +35,7 @@ module.exports = {
 		let thing = new MessageEmbed()
             .setColor(message.client.embedColor)
             .setTimestamp()
-            .setDescription(`${emojistop} Stopped the music`)
+            .setDescription(`${emojistop} Остановил музыку`)
         message.channel.send({embeds: [thing]});
 	
   	}
