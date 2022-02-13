@@ -76,3 +76,4 @@ async execute(message, args, client) {
 
         } // end "Giveaway" role condition
     }
+}
