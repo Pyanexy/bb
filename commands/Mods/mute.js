@@ -14,7 +14,7 @@ execute: async (message, args, client, prefix) => {
   let muteUser = message.mentions.members.first();
   if(!muteUser) return message.channel.send("Couldn't find user | **Usage:** `>mute @user <time> <reason>`");
   if(muteUser.permissions.has("ADMINISTRATOR")) return message.reply("You can't ban an Administrator!");  
-  let reason = args.slice(3).join(" ");
+  let reason = args.slice(2).join(" ");
   if(!reason) return message.channel.send("Specify a reason | **Usage:** `>mute @user <time> <reason>`");
 
   let muterole = message.guild.roles.cache.find(r => r.name === "Заглушен")
@@ -62,7 +62,7 @@ execute: async (message, args, client, prefix) => {
 
     let unmuteLogEmbed = new MessageEmbed()
     .setAuthor(`Punishment | ${muteUser.user.tag} | Unmute`, muteUser.user.displayAvatarURL)
-    .setDescription(`**Target:** ${muteUser}\n \n**Removed By:** ${bot.user}\n \n**Issued Reason:** Expired/False\n \n**Issued In:** Console`)
+    .setDescription(`**Target:** ${muteUser}\n \n**Removed By:** ${client.user}\n \n**Issued Reason:** Expired/False\n \n**Issued In:** Console`)
     .setColor("#e74c3c")
     .setTimestamp()
     .setFooter(`ID: ${muteUser.id}`)
