@@ -13,7 +13,7 @@ execute: async (message, args, client, prefix) => {
         if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("You have insufficient permissions to execute this command.");
   let muteUser = message.mentions.users.first();
   if(!muteUser) return message.channel.send("Couldn't find user | **Usage:** `>mute @user <time> <reason>`");
-  if(muteUser.permissions.has("ADMINISTRATOR")) return message.channel.send(":clown: You tried. :clown:");
+  if(muteUser.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS)) return message.reply("You can't ban an Administrator!");  
   let reason = args.slice(2).join(" ");
   if(!reason) return message.channel.send("Specify a reason | **Usage:** `>mute @user <time> <reason>`");
 
