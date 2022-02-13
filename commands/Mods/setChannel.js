@@ -1,7 +1,7 @@
 module.exports = {
-    name: "kick",
+    name: "channel",
     category: "Mods",
-    description: "Команда кик",
+    description: "Мод-лог",
     args: false,
     usage: "",
     permission: [],
