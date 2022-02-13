@@ -59,18 +59,15 @@ const dbOptions = {
   family: 4,
   useUnifiedTopology: true,
 };
-  mongoose.connect(client.config.mongourl, dbOptions);
-  mongoose.set("useFindAndModify", false);
-  mongoose.Promise = global.Promise;
-	mongoose.connection.on('connected', () => {
-		client.logger.log('[ДБ] ✔', "ready");
-		});
-	mongoose.connection.on('err', (err) => {
-			console.log(`Базы данных подключена с ошибкой: \n ${err.stack}`, "error");
-		});
-	mongoose.connection.on('disconnected', () => {
-			console.log('[ДБ] ❌');
-		});
+  
+mongoose.connect(client.config.mongourl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }).then(() => {
+        console.log('Подключён MDB')
+    }).catch((err) => {
+        console.log('Отключено MDB\nError: ' + err)
+    })
     
 /**
  * Error Handler
