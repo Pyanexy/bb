@@ -39,7 +39,7 @@ execute: async (message, args, client, prefix) => {
     }
   }
   let length = args[1];
-  if(isNaN(ms(length)) return message.channel.send("Укажите время. **Использование:** `n!mute @user <время> <причина>`");
+  if(isNaN(ms(length))) return message.channel.send("Укажите время. **Использование:** `n!mute @user <время> <причина>`");
   message.delete().catch();
 
   
