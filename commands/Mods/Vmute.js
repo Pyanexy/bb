@@ -51,7 +51,7 @@ setTimeout(function(){
     muteUser.roles.remove(muterole.id);
    
 }, ms(length));
-} else if(args.slice(2).join(" ") == "voice") {
+} else if(args.slice(1).join(" ") == "voice") {
 
  const member = message.mentions.members.first();
 
