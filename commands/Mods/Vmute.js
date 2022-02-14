@@ -22,17 +22,17 @@ execute: async (message, args, client, prefix) => {
         let member = message.mentions.members.first();
         let reason = args.slice(2).join(' ');
 
-        if(member.user.id === message.author.id) {
+        if(member.id === message.author.id) {
             return message.reply({
                 content: "Вы не можете модерировать себя!",
                 ephemeral: true,
             });
-        } else if(member.user.id === client.user.id) {
+        } else if(member.id === client.user.id) {
             return  message.reply({
                 content: "Вы не можете модерировать меня!",
                 ephemeral: true,
             });
-        } else if(member.user.id === message.guild.ownerId) {
+        } else if(member.id === message.guild.ownerId) {
             return message.reply({
                 content: "Вы не можете модерировать владельца сервера!",
                 ephemeral: true,
@@ -71,7 +71,7 @@ execute: async (message, args, client, prefix) => {
         await member.voice.setMute(true, reason).then(() => {
             
                     let embed = new MessageEmbed()
-                        .setAuthor({name:`${message.user.username} ${message.member.nickname ? `(${message.member.nickname})` : ""}`, iconURL: `${message.user.avatarURL()}`})
+                        .setAuthor({name:`${message.author.username} ${message.member.nickname ? `(${message.member.nickname})` : ""}`, iconURL: `${message.user.avatarURL()}`})
                         .setTitle("Пользователь заглушен")
                         .setColor(client.embedColor)
                         .setDescription(`Причина: ${reason}`)
