@@ -81,10 +81,10 @@ execute: async (message, args, client, prefix) => {
                         )
                         .setTimestamp();
                     message.channel.send({embeds: [embed]});
-               }
+               
 
             
-
+}
             
  }
 
