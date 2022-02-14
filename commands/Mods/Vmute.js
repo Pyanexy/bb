@@ -22,17 +22,17 @@ execute: async (message, args, client, prefix) => {
         let member = message.mentions.members.first();
         let reason = args.slice(2).join(' ');
 
-        if(member.id === message.author.id) {
+        if(member === message.author.id) {
             return message.reply({
                 content: "Вы не можете модерировать себя!",
                 ephemeral: true,
             });
-        } else if(member.id === client.user.id) {
+        } else if(member === client.id) {
             return  message.reply({
                 content: "Вы не можете модерировать меня!",
                 ephemeral: true,
             });
-        } else if(member.id === message.guild.ownerId) {
+        } else if(member === message.guild.ownerId) {
             return message.reply({
                 content: "Вы не можете модерировать владельца сервера!",
                 ephemeral: true,
