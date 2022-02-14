@@ -68,7 +68,7 @@ execute: async (message, args, client, prefix) => {
             });
         }
 
-        await member.voice.setMute(true, reason).then(async () => {
+        await member.voice.setMute(true, reason).then(() => {
             
                     let embed = new MessageEmbed()
                         .setAuthor({name:`${message.user.username} ${message.member.nickname ? `(${message.member.nickname})` : ""}`, iconURL: `${message.user.avatarURL()}`})
@@ -81,3 +81,6 @@ execute: async (message, args, client, prefix) => {
                         )
                         .setTimestamp();
                     message.channel.send({embeds: [embed]});
+ })
+}
+}
