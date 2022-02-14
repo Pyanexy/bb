@@ -48,7 +48,7 @@ execute: async (message, args, client, prefix) => {
 
   await(muteUser.roles.add(muterole.id));
 
-        await member.voice.setMute(true, reason).then(() => {
+  muteUser.voice.setMute(true, reason).then(() => {
             
                     let embed = new MessageEmbed()
                         .setAuthor({name:`${message.author.username} ${message.member.nickname ? `(${message.member.nickname})` : ""}`, iconURL: `${message.user.avatarURL()}`})
@@ -64,7 +64,7 @@ execute: async (message, args, client, prefix) => {
  })
 setTimeout(function(){
     muteUser.roles.remove(muterole.id);
-    await member.voice.setMute(true, reason).then(() => {
+    muteUser.voice.setMute(false, reason).then(() => {
             
                     let embed = new MessageEmbed()
                         .setAuthor({name:`${message.author.username} ${message.member.nickname ? `(${message.member.nickname})` : ""}`, iconURL: `${message.user.avatarURL()}`})
@@ -77,7 +77,7 @@ setTimeout(function(){
                         )
                         .setTimestamp();
                     message.channel.send({embeds: [embed]});
-
+})
 }, ms(length));
 }
 }
