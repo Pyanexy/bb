@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const ms = require("ms");
 
 module.exports = { 
 name: "mute", 
@@ -10,63 +11,42 @@ permission: [],
 owner: false, 
 execute: async (message, args, client, prefix) => {
 //mod channel 
-    let isMod = message.guild.roles.cache.find(r => r.name == "Заглушен")
+     if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("You have insufficient permissions to execute this command.");
+  let muteUser = message.mentions.members.first();
+  if(!muteUser) return message.channel.send("Couldn't find user | **Usage:** `>mute @user <time> <reason>`");
+  if(muteUser.permissions.has("ADMINISTRATOR")) return message.channel.send(":clown: You tried. :clown:");
+  let reason = args.slice(2).join(" ");
+  if(!reason) return message.channel.send("Specify a reason | **Usage:** `>mute @user <time> <reason>`");
 
-        if (!isMod && !message.member.permissions.has("MUTE_MEMBERS") ) {
-            return message.reply({
-                content: "У вас нет на это разрешения!",
-                ephemeral: true,
-            });
-        }
+  let muterole = message.guild.roles.cache.find(r => r.name === "Заглушен")
+  if(!muterole){
+    try{
+      muterole = await message.guild.roles.create({
+        name: "Заглушен",
+        color: client.embedColor,
+        permissions:[]
+      });
 
-        let member = message.mentions.members.first();
-        let reason = args.slice(2).join(' ');
+      message.guild.channels.forEach(async (channel, id) => {
+        await channel.overwritePermissions(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        });
+      });
+      
+    }catch(e){
+      console.log(e.stack);
+    }
+  }
+  let length = args[1];
+  if(isNaN(ms(length)) return message.channel.send("Укажите время. **Использование:** `n!mute @user <время> <причина>`");
+  message.delete().catch();
 
-        if(member === message.author.id) {
-            return message.reply({
-                content: "Вы не можете модерировать себя!",
-                ephemeral: true,
-            });
-        } else if(member === client.id) {
-            return  message.reply({
-                content: "Вы не можете модерировать меня!",
-                ephemeral: true,
-            });
-        } else if(member === message.guild.ownerId) {
-            return message.reply({
-                content: "Вы не можете модерировать владельца сервера!",
-                ephemeral: true,
-            });
-        }
+  
 
-        if(message.member.roles.highest.position < member.roles.highest.position) {
-            return message.reply({
-                content: "Вы не можете заглушить кого-то с более высокой ролью, чем вы!",
-                ephemeral: true,
-            });
-        }
+  
 
-
-        if(!member.manageable) {
-            return message.reply({
-                content: "Я не могу отключить этого пользователя!",
-                ephemeral: true,
-            });
-        }
-
-        if(!member.voice.channel) {
-            return message.reply({
-                content: "Этот пользователь не находится на голосовом канале!",
-                ephemeral: true,
-            });
-        }
-
-        if(member.voice.selfMute || member.voice.mute) {
-            return message.reply({
-                content: "Этот пользователь уже отключен!",
-                ephemeral: true,
-            });
-        }
+  await(muteUser.roles.add(muterole.id));
 
         await member.voice.setMute(true, reason).then(() => {
             
@@ -82,5 +62,22 @@ execute: async (message, args, client, prefix) => {
                         .setTimestamp();
                     message.channel.send({embeds: [embed]});
  })
+setTimeout(function(){
+    muteUser.roles.remove(muterole.id);
+    await member.voice.setMute(true, reason).then(() => {
+            
+                    let embed = new MessageEmbed()
+                        .setAuthor({name:`${message.author.username} ${message.member.nickname ? `(${message.member.nickname})` : ""}`, iconURL: `${message.user.avatarURL()}`})
+                        .setTitle("Пользователь разглушен")
+                        .setColor(client.embedColor)
+                        .setDescription(`Причина: ${reason}`)
+                        .addFields(
+                            {name: "Разглушен", value: `${member}`, inline: true},
+                            {name: "Модератор", value:`${message.member}`, inline: true},
+                        )
+                        .setTimestamp();
+                    message.channel.send({embeds: [embed]});
+
+}, ms(length));
 }
 }
