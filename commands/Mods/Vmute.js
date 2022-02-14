@@ -11,7 +11,8 @@ permission: [],
 owner: false, 
 execute: async (message, args, client, prefix) => {
 //mod channel 
-    if(args.slice(2).join(" ") == "text") {
+ if(!args[0]) return message.reply("Выберите тип: \`text || voice\`");
+    if(args.slice(1).join(" ") == "text") {
      if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("You have insufficient permissions to execute this command.");
   let muteUser = message.mentions.members.first();
   if(!muteUser) return message.channel.send("Couldn't find user | **Usage:** `>mute @user <time> <reason>`");
