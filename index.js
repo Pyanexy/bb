@@ -226,19 +226,4 @@ mongoose.connection.on('connected',()=>{
 })
 
 
-client.on('message', async(message) => {
-
-  if(message.author.bot) return;
-  if(message.channel.type == 'dm') return;
-
-  client.nodb = (user) => message.channel.send(new Discord.MessageEmbed().setColor('RED').setDescription(`К сожелению **${user.tag}** нету в базе-данных.`));
-
-  let user = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
-  let guild = await Guild.findOne({ guildID: message.guild.id });
-  if(!user) { User.create({ guildID: message.guild.id, userID: message.author.id }); message.channel.send(`\`[✅ DataBase]\` **${message.author.username}** Успешно был(а) добавлен в базу-данных`) }
-  if(!guild) { Guild.create({ guildID: message.guild.id }); message.channel.send(`\`[✅ DataBase]\` **${message.guild.name}** Успешно была добавлена в базу-данных`); }
-});
-
-
-
 client.login(client.config.token);
