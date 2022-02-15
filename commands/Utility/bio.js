@@ -11,7 +11,7 @@ permission: [],
 owner: false,
 execute: async (client, message, args, prefix) => {
 
-if(!args[0]) return message.reply("Твоя биография:" + await client.db.get(`bio_${message.author.id}`) || "нету")
+if(!args[0]) return message.reply("Укажите текст Биографии")
 
 let context = args.slice(0).join(" ")
 if(!context.length >= 200) return message.reply("Биография не может быть длиннее 200 букв")
