@@ -12,6 +12,9 @@ module.exports = async (client, message) => {
   if(!user) { User.create({ guildID: message.guild.id, userID: message.author.id }); message.channel.send(`\`[✅ DataBase]\` **${message.author.username}** Успешно был(а) добавлен в базу-данных`) }
   if(!guild) { Guild.create({ guildID: message.guild.id }); message.channel.send(`\`[✅ DataBase]\` **${message.guild.name}** Успешно была добавлена в базу-данных`); }
 
+
+    let prefix = await client.db.get(`prefix_${message.guild.id}`);
+      if (prefix === null) prefix = client.prefix;
     const mention = new RegExp(`^<@!?${client.user.id}>( |)$`);
 
     if (message.content.match(mention)) {
@@ -28,7 +31,7 @@ module.exports = async (client, message) => {
 
     const [ matchedPrefix ] = message.content.match(prefixRegex);
 
-    const args = message.content.slice(matchedPrefix.length || guild.prefix.length ).trim().split(/ +/);
+    const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
     const command = client.commands.get(commandName) ||
