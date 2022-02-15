@@ -55,6 +55,7 @@ module.exports = {
         const userlol = new Discord.MessageEmbed()
         .setAuthor(`Информация о пользователе`, mention.user.avatarURL())
         .setThumbnail(usericon)
+        .setDescription(await client.db.get(`bio_${mention.id}`) || "Биография отсутствует")
         .addField(`Главная информация`, `Имя: \`${mention.user.username}\` \nТег: \`${mention.user.discriminator}\` \nНикнейм: \`${nick}\``)
         .addField(`Обзор`, `Значки: \`${flags[mention.user.flags.toArray().join(", ")]}\``)
         .addField(`Информация о сервере`, `Роли: <@&${mention._roles.join(">  <@&") || `Нету` }> \nКлючевые разрешения: \`${finalPermissions.join(', ')}\``)
