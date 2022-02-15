@@ -5,7 +5,7 @@ module.exports = async (client, message) => {
    if (message.author.bot) return;
    if (!message.guild) return;
 
-   client.nodb = (user) => message.channel.send(new Discord.MessageEmbed().setColor('RED').setDescription(`К сожелению **${user.tag}** нету в базе-данных.`));
+   client.nodb = (user) => message.channel.send(new MessageEmbed().setColor('RED').setDescription(`К сожелению **${user.tag}** нету в базе-данных.`));
 
   let user = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
   let guild = await Guild.findOne({ guildID: message.guild.id });
