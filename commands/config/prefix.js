@@ -32,15 +32,18 @@ const embed = new MessageEmbed()
 .setColor(client.embedColor) 
 return message.channel.send({ embeds: [embed] }); } 
 
-let data = await Guild.findOne({ guildID: message.guild.id })
-
-        let embed = new MessageEmbed()
+if (args.join("") === default_prefix) {
+      client.db.delete(`prefix_${message.guild.id}`);
+      const embed = new MessageEmbed()
+        .setDescription("Префикс сброшен")
         .setColor(client.embedColor)
-        .setDescription(`Вы успешно сменили префикс бота на \`${args[0]}\``)
-        message.channel.send({ embeds: [embed] }).then(() => {
-        message.react("✔")
-       })
+      return await message.channel.send({ embeds: [embed] });
+    }
 
-        data.prefix = args[0]; data.save();
+    client.db.set(`prefix_${message.guild.id}`, args[0]);
+    const embed = new MessageEmbed()
+       .setDescription(`Новый персональный префикс: **${args[0]}**`)
+       .setColor(client.embedColor)
+    await message.channel.send({ embeds: [embed] });
      },
 };
