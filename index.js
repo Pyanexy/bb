@@ -1,7 +1,6 @@
 const { Client, Collection, MessageEmbed } = require("discord.js");
 const array = [];
 const { readdirSync } = require("fs");
-const mongoose = require('mongoose');
 const { Database } = require("quickmongo");
 const { Manager } = require("erela.js");
 const Spotify = require("erela.js-spotify");
@@ -20,7 +19,6 @@ module.exports = client;
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.config = require("./config.json");
-client.db = new Database(client.config.mongourl);
 client.owner = client.config.ownerID;
 client.prefix = client.config.prefix;
 client.embedColor = client.config.embedColor;
@@ -29,7 +27,6 @@ client.commands = new Collection();
 client.categories = readdirSync("./commands/");
 client.logger = require("./utils/logger.js");
 client.emoji = require("./utils/emoji.json");
-client.bd = require("./Database/Mongoose.js");
 
 client.manager = new Manager({
     nodes: client.config.nodes,
@@ -61,14 +58,7 @@ const dbOptions = {
   useUnifiedTopology: true,
 };
   
-mongoose.connect(client.config.mongourl, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }).then(() => {
-        console.log('Подключён MDB')
-    }).catch((err) => {
-        console.log('Отключено MDB\nError: ' + err)
-    })
+
     
 /**
  * Error Handler
@@ -222,5 +212,33 @@ client.on('interactionCreate', async (interaction) => {
     
  }
 })
+
+const Discord = require("discord.js");
+const mongoose = require("mongoose");
+global.Discord = require('discord.js')
+global.mongoose = require('mongoose')
+global.Guild = require("./data/guild.js");
+global.User = require('./data/user.js');
+
+mongoose.connect(client.config.mongourl, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.on('connected',()=>{
+  console.log('[✅ DataBase] Connected!')
+})
+
+
+client.on('message', async(message) => {
+
+  if(message.author.bot) return;
+  if(message.channel.type == 'dm') return;
+
+  client.nodb = (user) => message.channel.send(new Discord.MessageEmbed().setColor('RED').setDescription(`К сожелению **${user.tag}** нету в базе-данных.`));
+
+  let user = await User.findOne({ guildID: message.guild.id, userID: message.author.id });
+  let guild = await Guild.findOne({ guildID: message.guild.id });
+  if(!user) { User.create({ guildID: message.guild.id, userID: message.author.id }); message.channel.send(`\`[✅ DataBase]\` **${message.author.username}** Успешно был(а) добавлен в базу-данных`) }
+  if(!guild) { Guild.create({ guildID: message.guild.id }); message.channel.send(`\`[✅ DataBase]\` **${message.guild.name}** Успешно была добавлена в базу-данных`); }
+});
+
+
 
 client.login(client.config.token);
