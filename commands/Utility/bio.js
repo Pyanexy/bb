@@ -17,7 +17,7 @@ let context = args.slice(0).join(` `)
 client.db.set(`bio_${message.author.id}`, context)
 const embed = new MessageEmbed()
 .setColor(client.embedColor)
-.setDescription(`Биография установлена!\nПрсмотреть здесь \`${prefix}userinfo\``)
+.setDescription(`Биография установлена!\nПрсмотреть здесь \`${prefix}user\``)
 message.channel.send({embeds: [embed], react: "🎉" })
    }
 } 
