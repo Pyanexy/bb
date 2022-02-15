@@ -10,7 +10,7 @@ usage: "<текст>",
 permission: [],
 owner: false,
 execute: async (client, message, args, prefix) => {
-let context = args.slice(0).join(" ")
+const context = args[0]
     
     if(context.length > 0) return message.reply("Биография не может быть пустым значением")
     if(context.length >= 200) return message.reply("К сожелению я не могу поставить вам такое описание. Оно имеет более 200 букв")
